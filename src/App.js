@@ -5,10 +5,19 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Layout from './Containers/Layout';
+import GoodDeeds from './Components/GoodDeeds';
+import MoneyRaised from './Components/MoneyRaised';
+import Error from './Components/Error';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 const App = styled.div`
   font-family: Roboto, sans-serif;
   font-size: 16px;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export default class extends Component {
@@ -27,14 +36,21 @@ export default class extends Component {
     });
 
     return (
-      <App>
-        <CssBaseline />
-        <MuiThemeProvider theme={theme}>
-          <Header />
-          <Layout />
-          <Footer />
-        </MuiThemeProvider>
-      </App>
+      <BrowserRouter>
+        <App>
+          <CssBaseline />
+          <MuiThemeProvider theme={theme}>
+            <Header />
+            <Switch>
+              <Route path="/" component={Layout} exact />
+              <Route path="/good-deeds" component={GoodDeeds} />
+              <Route path="/money-raised" component={MoneyRaised} />
+              <Route component={Error} />
+            </Switch>
+            <Footer />
+          </MuiThemeProvider>
+        </App>
+      </BrowserRouter>
     );
   }
 }
