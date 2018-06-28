@@ -53,7 +53,7 @@ const messages = [
     id: 0,
     type: 'goodDeeds',
     name: 'Jonh Doe',
-    content: 'Blalalalaallalalabkblaba',
+    content: `Laborum in ullamco ut ullamco tempor.`,
     moneyRaised: 100,
     goodDeeds: 1
   },
@@ -61,8 +61,8 @@ const messages = [
     id: 1,
     type: 'moneyRaised',
     name: 'Jonh Doe',
-    content:
-      'Blalalalaallalalabkblaba.sd,mn dsmns dkmc kdjsnckjs,dnvkbkjvbjkebvkjebvjkebvjkerbvjkbjekm jmnv bjkernkjiofhrekjnbvjehrbvkjerbnvjekrbhvjerbvjerbkvjerbvjhkrenvjkerb vkjenbvjkhrenbjkvber jhbmvekjrbvkrjenbvjermnvkjrebvkjlrenbvjhrkenvjkrebvjkr,bv hjrevnbjrebvjn',
+    content: `Ullamco quis exercitation officia sunt ad cillum commodo dolor consectetur. Esse voluptate commodo nostrud labore aute adipisicing elit. Dolor proident ipsum proident in in qui enim ut laborum minim consectetur officia amet. Commodo cillum proident deserunt pariatur aliquip mollit magna dolor qui anim id aliquip ea esse.
+    Elit ea reprehenderit sunt adipisicing officia pariatur. Cillum ullamco ipsum laboris amet elit irure. Reprehenderit ad non dolore eiusmod consequat. Ut nisi commodo culpa qui in minim proident Lorem. In laborum deserunt commodo cupidatat et cupidatat dolore eiusmod do minim veniam occaecat esse aliquip. Consequat laboris laboris officia ad sit consectetur`,
     moneyRaised: 100,
     goodDeeds: 1
   },
@@ -70,7 +70,7 @@ const messages = [
     id: 2,
     type: 'moneyRaised',
     name: 'Jonh Doe',
-    content: 'Blalalalaallalalabkblaba',
+    content: 'Laborum in ullamco ut ullamco tempor.',
     moneyRaised: 100,
     goodDeeds: 1
   },
@@ -78,7 +78,7 @@ const messages = [
     id: 3,
     type: 'goodDeeds',
     name: 'Jonh Doe',
-    content: 'Blalalalaallalalabkblaba',
+    content: 'Laborum in ullamco ut ullamco tempor.',
     moneyRaised: 100,
     goodDeeds: 1
   }
