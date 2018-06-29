@@ -14,7 +14,7 @@ const Message = styled.div`
   margin: auto;
   margin-bottom: 10px;
   border-radius: 5px;
-  width: 340px;
+  width: 300px;
   min-height: 100px;
   border: 2px solid
     ${props => (props.type === 'moneyRaised' ? '#9fedd7' : '#026670')};

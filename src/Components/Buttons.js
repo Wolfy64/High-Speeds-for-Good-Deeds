@@ -13,6 +13,7 @@ const MyButton = styled(Button)`
 const MyContainer = styled(Container)`
   @media (max-width: 500px) {
     flex-direction: column;
+    text-align: center;
   }
 `;
 
