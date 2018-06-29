@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from '../../config/axios';
 import styled from 'styled-components';
 import Wrapper from '../Wrapper';
 import Container from '../container';
@@ -84,17 +85,52 @@ const messages = [
   }
 ];
 
-const MessageBoard = () => {
-  return (
-    <Background>
-      <Wrapper>
-        <MyContainer>
-          <Images images={images} />
-          <Messages messages={messages} />
-        </MyContainer>
-      </Wrapper>
-    </Background>
-  );
-};
+class MessageBoard extends Component {
+  state = {
+    messages: [
+      {
+        firstName: 'john',
+        lastName: 'Doe',
+        text: 'Hello World',
+        typeMessage: 'goodDeeds',
+        goodDeeds: 1,
+        moneyRaised: 0
+      },
+      {
+        firstName: 'jane',
+        lastName: 'Doe',
+        text: 'Answer life is 42',
+        typeMessage: 'moneyRaised',
+        goodDeeds: 0,
+        moneyRaised: 100
+      }
+    ],
+    images: []
+  };
+
+  componentDidMount() {
+    // const messages = axios
+    //   .get('/messages.json')
+    //   .then(res => [...test])
+    //   .catch(error => console.log('[ERROR]', error));
+    // console.log('[DATA]', messages);
+    // console.log('[TEST]', test);
+  }
+
+  render() {
+    // console.log(this.state.messages);
+
+    return (
+      <Background>
+        <Wrapper>
+          <MyContainer>
+            <Images images={images} />
+            <Messages messages={this.state.messages} />
+          </MyContainer>
+        </Wrapper>
+      </Background>
+    );
+  }
+}
 
 export default MessageBoard;
