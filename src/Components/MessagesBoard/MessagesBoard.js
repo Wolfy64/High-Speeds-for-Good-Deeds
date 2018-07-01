@@ -7,16 +7,6 @@ import Messages from './Messages';
 
 import { database } from '../../config/firebase';
 
-const Background = styled.div`
-  background-color: #fef9c7;
-`;
-
-const MyContainer = styled(Container)`
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-
 const images = [
   {
     id: 0,
@@ -50,7 +40,7 @@ const images = [
   }
 ];
 
-class MessageBoard extends Component {
+export default class MessageBoard extends Component {
   state = {
     messages: [],
     images: []
@@ -63,7 +53,6 @@ class MessageBoard extends Component {
   }
 
   render() {
-    console.log('[MESSAGES]', this.state.messages);
     return (
       <Background>
         <Wrapper>
@@ -77,4 +66,12 @@ class MessageBoard extends Component {
   }
 }
 
-export default MessageBoard;
+const Background = styled.div`
+  background-color: #fef9c7;
+`;
+
+const MyContainer = styled(Container)`
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+`;

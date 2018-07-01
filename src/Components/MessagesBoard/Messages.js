@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Message from './Message/index';
 
-const Messages = styled.div`
-  text-align: center;
-  flex: 2;
-`;
-
 export default props => {
   const messages = props.messages.map((message, id) => {
     if (message.typeMessage === 'goodDeeds') {
@@ -42,7 +37,14 @@ export default props => {
         </Message>
       );
     }
+
+    return <p key={id}>Error loading</p>;
   });
 
   return <Messages>{messages}</Messages>;
 };
+
+const Messages = styled.div`
+  text-align: center;
+  flex: 2;
+`;

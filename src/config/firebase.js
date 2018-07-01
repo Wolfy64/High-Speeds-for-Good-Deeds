@@ -27,3 +27,8 @@ export const database = app
   .database()
   .ref()
   .child('messages/-LGD43j-pQ49Q1FtXHy4');
+
+export const counter = app
+  .database()
+  .ref()
+  .child('counter');

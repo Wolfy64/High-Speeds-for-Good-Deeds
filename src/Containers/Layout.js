@@ -4,12 +4,21 @@ import Counters from '../Components/Counters/Counters';
 import Introduction from '../Components/Introduction';
 import Buttons from '../Components/Buttons';
 import MessageBoard from '../Components/MessagesBoard/MessagesBoard';
+import { counter } from '../config/firebase';
 
 class Layout extends Component {
   state = {
-    totalsGoodDeeds: 999,
-    totatMoneyRaised: 1000
+    counter: {
+      goodDeeds: 0,
+      moneyRaised: 0
+    }
   };
+
+  componentDidMount() {
+    counter.on('value', snap => {
+      this.setState({ counter: snap.val() });
+    });
+  }
 
   handleCliked = () => {
     console.log('Was clicked');
@@ -20,8 +29,8 @@ class Layout extends Component {
       <React.Fragment>
         <Wrapper>
           <Counters
-            goodDeeds={this.state.totalsGoodDeeds}
-            moneyRaised={this.state.totatMoneyRaised}
+            goodDeeds={this.state.counter.goodDeeds}
+            moneyRaised={this.state.counter.moneyRaised}
           />
           <Introduction />
           <Buttons cliked={this.handleCliked} />
