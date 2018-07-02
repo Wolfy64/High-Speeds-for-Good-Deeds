@@ -4,7 +4,7 @@ import Wrapper from '../UI/Wrapper';
 import { MyButton, MyWrapper, Typography } from './style';
 import { goodDeedsData } from '../../config/goodDeedsData';
 
-import GoodDeed from './GoodDeed';
+import GoodDeed from './GoodDeed/GoodDeed';
 
 export default class extends Component {
   state = {
