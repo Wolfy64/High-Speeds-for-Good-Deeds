@@ -12,15 +12,21 @@ export default class extends Component {
   };
 
   handleAddGoodDeed = (id, goodDeed) => {
-    console.log(id);
-    console.log(goodDeed);
     this.setState({ gDeeds: goodDeed });
   };
 
   render() {
     const goodDeeds = goodDeedsData.map(gd => {
       return (
-        <Link key={gd.id} to={`${this.props.match.url}/${gd.id}`}>
+        <Link
+          key={gd.id}
+          to={{
+            pathname: `${this.props.match.url}/${gd.id}`,
+            state: {
+              goodDeed: gd.deed
+            }
+          }}
+        >
           <MyButton
             variant="contained"
             color="primary"

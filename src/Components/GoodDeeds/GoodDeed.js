@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default props => {
-  console.log(props);
-  return <h1>Good Deed</h1>;
+  // console.log(props);
+  let goodDeed = '';
+  if (props.location.state.goodDeed === 'undefined') goodDeed = 'NOPE';
+  goodDeed = props.location.state.goodDeed;
+  return <h1>{goodDeed}</h1>;
 };
