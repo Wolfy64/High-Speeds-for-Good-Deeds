@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Wrapper from './Wrapper';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
@@ -37,24 +37,37 @@ const dataGoodDeeds = [
   { id: 9, deed: 'I donated clothes or books to a charity shop' }
 ];
 
-const GoodDeeds = () => {
-  const goodDeeds = dataGoodDeeds.map(e => {
+export default class extends Component {
+  state = {
+    gDeeds: ''
+  };
+
+  handleAddGoodDeed = goodDeed => {
+    this.setState({ gDeeds: goodDeed });
+  };
+
+  render() {
+    const goodDeeds = dataGoodDeeds.map(e => {
+      return (
+        <MyButton
+          key={e.id}
+          variant="contained"
+          color="primary"
+          onClick={() => this.handleAddGoodDeed(e.deed)}
+        >
+          {e.deed}
+        </MyButton>
+      );
+    });
+
     return (
-      <MyButton variant="contained" color="primary" key={e.id}>
-        {e.deed}
-      </MyButton>
+      <Wrapper>
+        <Typography>
+          <p>SUPERSTAR!</p>
+          <p>What did you do?</p>
+        </Typography>
+        <MyWrapper>{goodDeeds}</MyWrapper>
+      </Wrapper>
     );
-  });
-
-  return (
-    <Wrapper>
-      <Typography>
-        <p>SUPERSTAR!</p>
-        <p>What did you do?</p>
-      </Typography>
-      <MyWrapper>{goodDeeds}</MyWrapper>
-    </Wrapper>
-  );
-};
-
-export default GoodDeeds;
+  }
+}
