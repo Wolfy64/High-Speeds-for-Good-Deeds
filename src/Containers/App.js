@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Footer, GoodDeeds, Header, MoneyRaised } from './Components';
-import Layout from './Containers/Layout';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Footer, GoodDeeds, Header, MoneyRaised } from '../Components';
+import Layout from '../Containers/Layout';
 
 const App = styled.div`
   font-family: Roboto, sans-serif;
