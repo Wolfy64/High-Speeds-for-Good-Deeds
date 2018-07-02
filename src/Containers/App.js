@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import { Footer, GoodDeeds, Header, MoneyRaised } from '../Components';
 import Layout from '../Containers/Layout';
 

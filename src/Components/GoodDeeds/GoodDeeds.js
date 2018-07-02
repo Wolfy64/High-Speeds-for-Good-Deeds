@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
+import { Route, Switch, Link } from 'react-router-dom';
 import Wrapper from '../UI/Wrapper';
 import { MyButton, MyWrapper, Typography } from './style';
 import { goodDeedsData } from '../../config/goodDeedsData';
+
+import GoodDeed from './GoodDeed';
 
 export default class extends Component {
   state = {
     gDeeds: ''
   };
 
-  handleAddGoodDeed = goodDeed => {
+  handleAddGoodDeed = (id, goodDeed) => {
+    console.log(id);
+    console.log(goodDeed);
     this.setState({ gDeeds: goodDeed });
   };
 
   render() {
-    const goodDeeds = goodDeedsData.map(e => {
+    const goodDeeds = goodDeedsData.map(gd => {
       return (
-        <MyButton
-          key={e.id}
-          variant="contained"
-          color="primary"
-          onClick={() => this.handleAddGoodDeed(e.deed)}
-        >
-          {e.deed}
-        </MyButton>
+        <Link key={gd.id} to={`${this.props.match.url}/${gd.id}`}>
+          <MyButton
+            variant="contained"
+            color="primary"
+            onClick={() => this.handleAddGoodDeed(gd.id, gd.deed)}
+          >
+            {gd.deed}
+          </MyButton>
+        </Link>
       );
     });
 
@@ -32,7 +38,16 @@ export default class extends Component {
           <p>SUPERSTAR!</p>
           <p>What did you do?</p>
         </Typography>
-        <MyWrapper>{goodDeeds}</MyWrapper>
+        <Switch>
+          <MyWrapper>
+            <Route
+              path={`${this.props.match.url}`}
+              render={() => goodDeeds}
+              exact
+            />
+            <Route path={`${this.props.match.url}/:id`} component={GoodDeed} />
+          </MyWrapper>
+        </Switch>
       </Wrapper>
     );
   }
