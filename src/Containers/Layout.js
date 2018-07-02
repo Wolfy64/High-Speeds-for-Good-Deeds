@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import Wrapper from '../Components/Wrapper';
-import Counters from '../Components/Counters/Counters';
-import Introduction from '../Components/Introduction';
-import Buttons from '../Components/Buttons';
-import MessageBoard from '../Components/MessagesBoard/MessagesBoard';
 import { counter } from '../config/firebase';
+import {
+  Board,
+  Buttons,
+  Counters,
+  Introduction,
+  Wrapper
+} from '../Components/index';
 
 class Layout extends Component {
   state = {
@@ -35,7 +37,7 @@ class Layout extends Component {
           <Introduction />
           <Buttons cliked={this.handleCliked} />
         </Wrapper>
-        <MessageBoard />
+        <Board />
       </React.Fragment>
     );
   }

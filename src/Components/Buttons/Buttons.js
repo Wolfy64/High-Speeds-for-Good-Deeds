@@ -1,23 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import Container from './container';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { MyButton, MyContainer } from './style';
 
-const MyButton = styled(Button)`
-  min-width: 200px !important;
-  height: 50px;
-  margin: 20px !important;
-`;
-
-const MyContainer = styled(Container)`
-  @media (max-width: 500px) {
-    flex-direction: column;
-    text-align: center;
-  }
-`;
-
-const Buttons = props => {
+export default props => {
   return (
     <MyContainer>
       <Link to="/good-deeds">
@@ -33,5 +18,3 @@ const Buttons = props => {
     </MyContainer>
   );
 };
-
-export default Buttons;
