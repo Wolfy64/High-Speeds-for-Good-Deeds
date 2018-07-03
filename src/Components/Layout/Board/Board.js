@@ -26,21 +26,23 @@ export default class MessageBoard extends Component {
                 <Image key={image.id} src={image.src} />
               ))}
             </Images>
-            <Messages>
-              {this.state.messages.map((message, id) => {
-                return (
-                  <Message
-                    key={id}
-                    type={message.typeMessage}
-                    firstName={message.firstName}
-                    lastName={message.lastName}
-                    text={message.text}
-                    goodDeeds={message.goodDeeds}
-                    moneyRaised={message.moneyRaised}
-                  />
-                );
-              })}
-            </Messages>
+            {this.state.messages && (
+              <Messages>
+                {this.state.messages.map((message, id) => {
+                  return (
+                    <Message
+                      key={id}
+                      type={message.typeMessage}
+                      firstName={message.firstName}
+                      lastName={message.lastName}
+                      text={message.text}
+                      goodDeeds={message.goodDeeds}
+                      moneyRaised={message.moneyRaised}
+                    />
+                  );
+                })}
+              </Messages>
+            )}
           </MyContainer>
         </Wrapper>
       </Background>
