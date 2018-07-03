@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+import { Message, Wrapper } from '../../index';
+import { database, images } from '../../../config';
+import { Background, Image, Images, Messages, MyContainer } from './style';
 
-import Message from './Messages/Message';
-import Wrapper from '../../UI/Wrapper';
-import { Background, Messages, MyContainer } from './Messages/style';
-import { Images, Image } from './style';
-
-import { database } from '../../../config/firebase';
-import { images } from '../../../config/imagesData';
+// import { database } from '../../../config/firebase';
+// import { images } from '../../../config/imageData';
 
 export default class MessageBoard extends Component {
   state = {

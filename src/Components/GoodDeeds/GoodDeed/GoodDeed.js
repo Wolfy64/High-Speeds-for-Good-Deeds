@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from './style';
-import Form from '../../Form/Form';
+import { Form } from '../../index';
 
 export default props => {
   return (

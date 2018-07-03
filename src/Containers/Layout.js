@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import { counter } from '../config/firebase';
-import {
-  Board,
-  Buttons,
-  Counters,
-  Introduction,
-  Wrapper
-} from '../Components/index';
+import { counter } from '../config';
+import { Board, Buttons, Counters, Introduction, Wrapper } from '../Components';
 
 class Layout extends Component {
   state = {

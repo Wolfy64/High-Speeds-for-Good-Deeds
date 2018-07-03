@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Headline, Title } from './style';
 import { Link } from 'react-router-dom';
+import { Container, Headline, Title } from './style';
 
 export default () => (
   <Container>

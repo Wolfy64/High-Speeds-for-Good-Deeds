@@ -1,14 +1,9 @@
 import styled from 'styled-components';
-import Container from '../../../UI/Container';
 
 export const Amount = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0;
-`;
-
-export const Background = styled.div`
-  background-color: #fef9c7;
 `;
 
 export const Counter = styled.div`
@@ -26,17 +21,6 @@ export const Message = styled.div`
   width: 300px;
   min-height: 100px;
   border: 2px solid ${props => (props.moneyRaised ? '#9fedd7' : '#026670')};
-`;
-
-export const Messages = styled.div`
-  text-align: center;
-  flex: 2;
-`;
-
-export const MyContainer = styled(Container)`
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
 `;
 
 export const Name = styled.p`

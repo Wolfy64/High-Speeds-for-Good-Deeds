@@ -11,7 +11,7 @@ export default class Form extends Component {
 
   componentDidMount() {
     this.setState({ message: this.props.message });
-    console.log('[State]', this.state);
+    // console.log('[State]', this.state);
   }
 
   handleChange(event) {
@@ -29,7 +29,7 @@ export default class Form extends Component {
     const toggle = this.state;
     toggle.isAnonymous = !toggle.isAnonymous;
     this.setState({ toggle });
-    console.log('[State - Checkbox]', this.state);
+    // console.log('[State - Checkbox]', this.state);
   }
 
   render() {

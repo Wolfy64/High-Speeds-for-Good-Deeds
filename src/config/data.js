@@ -1,4 +1,4 @@
-export const goodDeedsData = [
+export const goodDeedList = [
   { id: 0, deed: 'I gave up my seat on the tube / bus / train' },
   { id: 1, deed: 'I bought someone a coffee for no reason' },
   { id: 3, deed: 'I helped an elderly person with his or her shopping bags' },
@@ -19,4 +19,37 @@ export const goodDeedsData = [
   { id: 18, deed: 'I asked a stranger who looked upset what was wrong' },
   { id: 19, deed: 'I sent a nice message to my parent / sibling / relative' },
   { id: 20, deed: 'I DID SOMETHING ELSE GREAT' }
+];
+
+export const images = [
+  {
+    id: 0,
+    src: 'https://source.unsplash.com/random/200x200',
+    title: 'Image',
+    author: 'author'
+  },
+  {
+    id: 1,
+    src: 'https://source.unsplash.com/random/200x200',
+    title: 'Image',
+    author: 'author'
+  },
+  {
+    id: 2,
+    src: 'https://source.unsplash.com/random/200x200',
+    title: 'Image',
+    author: 'author'
+  },
+  {
+    id: 3,
+    src: 'https://source.unsplash.com/random/200x200',
+    title: 'Image',
+    author: 'author'
+  },
+  {
+    id: 4,
+    src: 'https://source.unsplash.com/random/200x200',
+    title: 'Image',
+    author: 'author'
+  }
 ];
