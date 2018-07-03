@@ -2,34 +2,45 @@ import React, { Component } from 'react';
 
 export default class Form extends Component {
   state = {
-    value: '',
     firstName: '',
     lastName: '',
+    email: '',
     message: '',
     isAnonymous: false
   };
 
   componentDidMount() {
     this.setState({ message: this.props.message });
-    // console.log('[State]', this.state);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
-    console.log('[Event]', event);
-    console.log('[State]', this.state);
-    alert('A name was submitted: ' + this.state.value);
+    const payload = this.handlePayload();
+    console.log(payload);
     event.preventDefault();
   }
 
   handleToggleChange() {
-    const toggle = this.state;
-    toggle.isAnonymous = !toggle.isAnonymous;
-    this.setState({ toggle });
-    // console.log('[State - Checkbox]', this.state);
+    this.setState({ isAnonymous: !this.state.isAnonymous });
+  }
+
+  handlePayload() {
+    const { firstName, lastName, email, message, isAnonymous } = this.state;
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      message
+    };
+
+    if (isAnonymous) {
+      payload['firstName'] = 'Anonymous';
+      payload['lastName'] = 'Anonymous';
+    }
+    return payload;
   }
 
   render() {
@@ -38,15 +49,29 @@ export default class Form extends Component {
         <label>
           First Name:
           <input
+            required
+            name="firstName"
             type="text"
-            value={this.state.value}
+            value={this.state.firstName}
             onChange={this.handleChange.bind(this)}
           />
         </label>
         <label>
           Last Name:
           <input
+            required
+            name="lastName"
             type="text"
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            required
+            name="email"
+            type="email"
             value={this.state.value}
             onChange={this.handleChange.bind(this)}
           />
@@ -54,6 +79,8 @@ export default class Form extends Component {
         <label>
           Message:
           <textarea
+            required
+            name="message"
             value={this.state.message}
             onChange={this.handleChange.bind(this)}
           />
