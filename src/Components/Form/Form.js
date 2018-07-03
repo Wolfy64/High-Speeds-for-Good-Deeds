@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { database } from '../../config';
 
 export default class Form extends Component {
   state = {
@@ -19,7 +20,7 @@ export default class Form extends Component {
 
   handleSubmit(event) {
     const payload = this.handlePayload();
-    console.log(payload);
+    database.set(payload);
     event.preventDefault();
   }
 

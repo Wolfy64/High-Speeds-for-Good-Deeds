@@ -1,6 +1,8 @@
 // Firebase App is always required and must be first
 import firebase from 'firebase/app';
 import 'firebase/app';
+// To generate uuid;
+import uuidv1 from 'uuid/v1';
 
 // Add additional services that you want to use
 import 'firebase/database';
@@ -26,7 +28,7 @@ const app = firebase.initializeApp(config);
 export const database = app
   .database()
   .ref()
-  .child('messages/-LGD43j-pQ49Q1FtXHy4');
+  .child(`messages/${uuidv1()}`);
 
 export const counter = app
   .database()
