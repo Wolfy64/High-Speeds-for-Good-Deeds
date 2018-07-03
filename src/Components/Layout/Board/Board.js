@@ -3,9 +3,6 @@ import { Message, Wrapper } from '../../index';
 import { database, images } from '../../../config';
 import { Background, Image, Images, Messages, MyContainer } from './style';
 
-// import { database } from '../../../config/firebase';
-// import { images } from '../../../config/imageData';
-
 export default class MessageBoard extends Component {
   state = {
     messages: [],
