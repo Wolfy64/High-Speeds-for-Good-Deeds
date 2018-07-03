@@ -22,10 +22,6 @@ class Layout extends Component {
     });
   }
 
-  handleCliked = () => {
-    console.log('Was clicked');
-  };
-
   render() {
     return (
       <React.Fragment>
@@ -35,7 +31,7 @@ class Layout extends Component {
             moneyRaised={this.state.counter.moneyRaised}
           />
           <Introduction />
-          <Buttons cliked={this.handleCliked} />
+          <Buttons />
         </Wrapper>
         <Board />
       </React.Fragment>
