@@ -11,7 +11,7 @@ export default props => {
     <React.Fragment>
       <Typography>
         {(goodDeed && <p>{goodDeed}</p>) || (
-          <p>Oops? Something went wrong... ¯\_(o_o)_/¯</p>
+          <p>Oops! Something went wrong... ¯\_(o_o)_/¯</p>
         )}
       </Typography>
       {props.location && (
