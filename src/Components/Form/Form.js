@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { dbMessages } from '../../config';
 import uuidv1 from 'uuid/v1'; // Generate unique id;
+import { MyButton, Wrapper } from './style';
+
+import {
+  // Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  TextField
+} from '@material-ui/core';
 
 export default class Form extends Component {
   state = {
@@ -48,57 +57,64 @@ export default class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <label>
-          First Name:
-          <input
+      <Wrapper>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <TextField
             required
             name="firstName"
             type="text"
+            label="First Name"
             value={this.state.firstName}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Last Name:
-          <input
+          <TextField
             required
             name="lastName"
             type="text"
-            value={this.state.value}
+            label="Last Name"
+            value={this.state.lastName}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Email:
-          <input
+          <TextField
             required
             name="email"
             type="email"
-            value={this.state.value}
+            label="Email"
+            value={this.state.email}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Message:
-          <textarea
+          <TextField
             required
             name="text"
+            type="text"
+            label="Message"
+            multiline
             value={this.state.text}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Hide my name !:
-          <input
-            name="anonymous"
-            type="checkbox"
-            checked={this.state.isAnonymous}
-            onChange={this.handleToggleChange.bind(this)}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+          <div style={{ textAlign: 'left' }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.isAnonymous}
+                  onChange={this.handleToggleChange.bind(this)}
+                  color="primary"
+                />
+              }
+              label="Hide my name !"
+            />
+          </div>
+          <Divider />
+
+          <MyButton type="submit" variant="contained" color="primary">
+            Submit
+          </MyButton>
+        </form>
+      </Wrapper>
     );
   }
 }
