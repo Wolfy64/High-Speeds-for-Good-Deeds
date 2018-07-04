@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Message, Wrapper } from '../../index';
-import { getMessages, images } from '../../../config';
+import { dbMessages, images } from '../../../config';
 import { Background, Image, Images, Messages, MyContainer } from './style';
 
 export default class MessageBoard extends Component {
@@ -11,7 +11,7 @@ export default class MessageBoard extends Component {
 
   componentDidMount() {
     this.setState({ images: [...images] });
-    getMessages.on('value', snap => {
+    dbMessages.on('value', snap => {
       if (snap.val()) this.setState({ messages: Object.values(snap.val()) });
     });
   }
@@ -28,10 +28,10 @@ export default class MessageBoard extends Component {
             </Images>
             {this.state.messages && (
               <Messages>
-                {this.state.messages.map((message, id) => {
+                {this.state.messages.map(message => {
                   return (
                     <Message
-                      key={id}
+                      key={message._id}
                       type={message.typeMessage}
                       firstName={message.firstName}
                       lastName={message.lastName}

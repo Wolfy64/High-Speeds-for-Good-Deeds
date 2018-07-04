@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { database } from '../../config';
+import { dbMessages } from '../../config';
+import uuidv1 from 'uuid/v1'; // Generate unique id;
 
 export default class Form extends Component {
   state = {
@@ -22,9 +23,10 @@ export default class Form extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     const payload = this.handlePayload();
-    database.set(payload);
+    dbMessages.push(payload);
+    event.preventDefault();
   }
 
   handleToggleChange() {
@@ -39,6 +41,7 @@ export default class Form extends Component {
       payload['lastName'] = null;
     }
 
+    payload['_id'] = uuidv1();
     delete payload.isAnonymous;
     return payload;
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { counter } from '../config';
+import { dbCounter } from '../config';
 import { Board, Buttons, Counters, Introduction, Wrapper } from '../Components';
 
 class Layout extends Component {
@@ -11,7 +11,7 @@ class Layout extends Component {
   };
 
   componentDidMount() {
-    counter.on('value', snap => {
+    dbCounter.on('value', snap => {
       this.setState({ counter: snap.val() });
     });
   }
