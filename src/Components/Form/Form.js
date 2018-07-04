@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { dbMessages } from '../../config';
+import { dbMessages, dbCounter } from '../../config';
 import uuidv1 from 'uuid/v1'; // Generate unique id;
 import { MyButton, Wrapper } from './style';
-
 import {
-  // Button,
   Checkbox,
   Divider,
   FormControlLabel,
@@ -35,6 +33,7 @@ export default class Form extends Component {
   handleSubmit(event) {
     const payload = this.handlePayload();
     dbMessages.push(payload);
+    this.updateCounter();
     event.preventDefault();
   }
 
@@ -53,6 +52,13 @@ export default class Form extends Component {
     payload['_id'] = uuidv1();
     delete payload.isAnonymous;
     return payload;
+  }
+
+  updateCounter() {
+    dbCounter.transaction(counter => {
+      counter.goodDeeds += 1;
+      return counter;
+    });
   }
 
   render() {
