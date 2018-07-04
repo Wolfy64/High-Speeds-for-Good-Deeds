@@ -6,22 +6,25 @@ export default class Form extends Component {
     firstName: '',
     lastName: '',
     email: '',
-    message: '',
+    text: '',
+    goodDeeds: 0,
+    moneyRaised: 0,
+    type: '',
     isAnonymous: false
   };
 
   componentDidMount() {
-    this.setState({ message: this.props.message });
+    const { text, goodDeeds, type } = this.props;
+    this.setState({ text, goodDeeds, type });
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     const payload = this.handlePayload();
     database.set(payload);
-    event.preventDefault();
   }
 
   handleToggleChange() {
@@ -29,18 +32,14 @@ export default class Form extends Component {
   }
 
   handlePayload() {
-    const { firstName, lastName, email, message, isAnonymous } = this.state;
-    const payload = {
-      firstName,
-      lastName,
-      email,
-      message
-    };
+    const payload = this.state;
 
-    if (isAnonymous) {
+    if (payload.isAnonymous) {
       payload['firstName'] = 'Anonymous';
-      payload['lastName'] = 'Anonymous';
+      payload['lastName'] = null;
     }
+
+    delete payload.isAnonymous;
     return payload;
   }
 
@@ -81,8 +80,8 @@ export default class Form extends Component {
           Message:
           <textarea
             required
-            name="message"
-            value={this.state.message}
+            name="text"
+            value={this.state.text}
             onChange={this.handleChange.bind(this)}
           />
         </label>
