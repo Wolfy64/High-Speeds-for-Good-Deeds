@@ -12,7 +12,7 @@ export default class MessageBoard extends Component {
   componentDidMount() {
     this.setState({ images: [...images] });
     getMessages.on('value', snap => {
-      this.setState({ messages: Object.values(snap.val()) });
+      if (snap.val()) this.setState({ messages: Object.values(snap.val()) });
     });
   }
 
