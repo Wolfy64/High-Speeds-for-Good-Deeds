@@ -1,2 +1,2 @@
-export { counter, database } from './firebase';
+export { counter, database, getMessages } from './firebase';
 export { goodDeedList, images } from './data';

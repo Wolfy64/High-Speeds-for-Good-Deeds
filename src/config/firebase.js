@@ -34,3 +34,8 @@ export const counter = app
   .database()
   .ref()
   .child('counter');
+
+export const getMessages = app
+  .database()
+  .ref()
+  .child('messages/');
