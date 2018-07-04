@@ -3,12 +3,20 @@ import { Typography } from './style';
 import { Form } from '../../index';
 
 export default props => {
+  let goodDeed = null;
+  if (props.location.state) {
+    goodDeed = props.location.state.goodDeed;
+  }
   return (
     <React.Fragment>
       <Typography>
-        <p>{props.location.state.goodDeed}</p>
+        {(goodDeed && <p>{goodDeed}</p>) || (
+          <p>Oops? Something went wrong... ¯\_(o_o)_/¯</p>
+        )}
       </Typography>
-      <Form message={props.location.state.goodDeed} />
+      {props.location && (
+        <Form text={goodDeed || ''} goodDeeds={1} type="Good Deeds" />
+      )}
     </React.Fragment>
   );
 };
