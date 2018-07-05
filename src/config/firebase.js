@@ -5,7 +5,7 @@ import firebaseui from 'firebaseui';
 
 // Add additional services that you want to use
 import 'firebase/database';
-// import 'firebase/auth';
+import 'firebase/auth';
 // import 'firebase/firestore';
 // import 'firebase/messaging';
 // import 'firebase/functions';
