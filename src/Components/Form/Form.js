@@ -42,15 +42,16 @@ export default class Form extends Component {
   }
 
   handlePayload() {
-    const payload = this.state;
+    const payload = { ...this.state };
 
     if (payload.isAnonymous) {
-      payload['firstName'] = 'Anonymous';
-      payload['lastName'] = null;
+      payload.firstName = 'Anonymous';
+      payload.lastName = null;
     }
 
-    payload['_id'] = uuidv1();
+    payload._id = uuidv1();
     delete payload.isAnonymous;
+
     return payload;
   }
 
