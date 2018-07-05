@@ -1,4 +1,5 @@
 // Components
+export { default as Authentication } from './Authentication/Authentication';
 export { default as Container } from './UI/Container';
 export { default as Buttons } from './Buttons/Buttons';
 export { default as Footer } from './Footer/Footer';

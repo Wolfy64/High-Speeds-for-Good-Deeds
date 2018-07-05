@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from './style';
-import { Form } from '../../index';
+import { Authentication, Form } from '../../index';
 
 export default props => {
   let goodDeed = null;
@@ -14,6 +14,7 @@ export default props => {
           <p>Oops! Something went wrong... ¯\_(o_o)_/¯</p>
         )}
       </Typography>
+      <Authentication />
       {props.location && (
         <Form text={goodDeed || ''} goodDeeds={1} type="Good Deeds" />
       )}
