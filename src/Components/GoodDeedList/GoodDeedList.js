@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { goodDeedList } from '../../config';
 import { MyButton } from './style';
+import { goodDeedList } from '../../config';
 
 export default () => {
   const goodDeeds = goodDeedList.map(gd => {

@@ -4,7 +4,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { App, theme } from './style';
 import { Header, Footer } from '../Components';
-import { Layout } from '../Pages';
+import { Layout } from '../Containers';
 
 export default class extends Component {
   render() {
