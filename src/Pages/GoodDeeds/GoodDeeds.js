@@ -1,6 +1,6 @@
 import React from 'react';
-import { GoodDeedList, Wrapper } from '../../Components';
 import { Typography } from './style';
+import { GoodDeedList, Wrapper } from '../../Components';
 
 export default () => {
   return (

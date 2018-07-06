@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Container from '../UI/Container';
 import Button from '@material-ui/core/Button';
+import Container from '../UI/Container';
 
 export const MyButton = styled(Button)`
   && {

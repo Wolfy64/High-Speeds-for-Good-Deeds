@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { dbMessages, dbCounter } from '../../config';
 import uuidv1 from 'uuid/v1'; // Generate unique id;
-import { MyButton, Wrapper } from './style';
 import {
   Checkbox,
   Divider,
   FormControlLabel,
   TextField
 } from '@material-ui/core';
+import { MyButton, Wrapper } from './style';
+import { dbMessages, dbCounter } from '../../config';
 
 export default class Form extends Component {
   state = {

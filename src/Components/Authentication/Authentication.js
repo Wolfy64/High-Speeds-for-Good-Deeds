@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container } from '../index';
 import firebase from 'firebase';
+import { Container } from '../index';
 
 export default () => {
   firebase

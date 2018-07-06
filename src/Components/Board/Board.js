@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Message, Wrapper } from '../';
-import { dbMessages, images } from '../../config';
 import { Background, Container, Image, Images, Messages } from './style';
+import { Message, Wrapper } from '../index';
+import { dbMessages, images } from '../../config';
 
 export default class MessageBoard extends Component {
   state = {
