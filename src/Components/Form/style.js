@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 export const Wrapper = styled.div`
   margin: auto;
   max-width: 320px;
+  text-align: center;
   form {
     padding: 10px;
   }

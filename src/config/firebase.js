@@ -1,11 +1,11 @@
 // Firebase App is always required and must be first
-import firebase from 'firebase/app';
-import 'firebase/app';
+import firebase from 'firebase';
+import 'firebase';
 import firebaseui from 'firebaseui';
 
 // Add additional services that you want to use
-import 'firebase/database';
-import 'firebase/auth';
+import 'firebase/database/dist/index.cjs';
+import 'firebase/auth/dist/index.cjs';
 // import 'firebase/firestore';
 // import 'firebase/messaging';
 // import 'firebase/functions';

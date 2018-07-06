@@ -1,8 +1,16 @@
 import styled from 'styled-components';
-import { Container } from '../../index';
 
 export const Background = styled.div`
   background-color: #fef9c7;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export const Images = styled.div`
@@ -24,10 +32,4 @@ export const Image = styled.img`
 export const Messages = styled.div`
   text-align: center;
   flex: 2;
-`;
-
-export const MyContainer = styled(Container)`
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
 `;

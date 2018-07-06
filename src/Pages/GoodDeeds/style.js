@@ -1,9 +1,4 @@
 import styled from 'styled-components';
-import Wrapper from '../UI/Wrapper';
-
-export const MyWrapper = styled(Wrapper)`
-  text-align: center;
-`;
 
 export const Typography = styled.div`
   width: 100%;

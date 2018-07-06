@@ -11,17 +11,6 @@ export const Amount = styled.span`
   }
 `;
 
-export const Typography = styled.span`
-  margin: auto;
-  margin-left: 5px;
-  white-space: nowrap;
-
-  @media (max-width: 500px) {
-    margin: auto;
-    margin-top: inherit;
-  }
-`;
-
 export const Counter = styled.div`
     flex: 1;
     margin-right: 20px;
@@ -38,4 +27,15 @@ export const Counter = styled.div`
       flex-direction: column;
   }
 }
+`;
+
+export const Typography = styled.span`
+  margin: auto;
+  margin-left: 5px;
+  white-space: nowrap;
+
+  @media (max-width: 500px) {
+    margin: auto;
+    margin-top: inherit;
+  }
 `;

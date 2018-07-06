@@ -1,8 +1,8 @@
 import React from 'react';
-import Container from '../container';
 import { Amount, Typography, Counter } from './style';
+import { Container } from '../index';
 
-const Counters = props => {
+export default props => {
   return (
     <Container>
       <Counter>
@@ -16,5 +16,3 @@ const Counters = props => {
     </Container>
   );
 };
-
-export default Counters;

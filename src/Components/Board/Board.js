@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Message, Wrapper } from '../../index';
-import { dbMessages, images } from '../../../config';
-import { Background, Image, Images, Messages, MyContainer } from './style';
+import { Message, Wrapper } from '../';
+import { dbMessages, images } from '../../config';
+import { Background, Container, Image, Images, Messages } from './style';
 
 export default class MessageBoard extends Component {
   state = {
@@ -20,7 +20,7 @@ export default class MessageBoard extends Component {
     return (
       <Background>
         <Wrapper>
-          <MyContainer>
+          <Container>
             <Images>
               {this.state.images.map(image => (
                 <Image key={image.id} src={image.src} />
@@ -43,7 +43,7 @@ export default class MessageBoard extends Component {
                 })}
               </Messages>
             )}
-          </MyContainer>
+          </Container>
         </Wrapper>
       </Background>
     );

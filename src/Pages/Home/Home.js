@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { dbCounter } from '../config';
-import { Board, Buttons, Counters, Introduction, Wrapper } from '../Components';
+import { dbCounter } from '../../config';
+import {
+  Board,
+  Buttons,
+  Counters,
+  Introduction,
+  Wrapper
+} from '../../Components';
 
 class Layout extends Component {
   state = {
