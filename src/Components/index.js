@@ -1,5 +1,4 @@
 // Index Components
-export { default as Authentication } from './Authentication/Authentication';
 export { default as Board } from './Board/Board';
 export { default as Buttons } from './Buttons/Buttons';
 export { default as Container } from './UI/Container';
