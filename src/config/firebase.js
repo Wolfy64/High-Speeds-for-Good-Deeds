@@ -22,28 +22,3 @@ const database = app.database().ref();
 // Get a reference to the root of the Database
 export const dbMessages = database.child('messages');
 export const dbCounter = database.child('counter');
-
-// Set authentication
-export const auth = firebase.auth();
-
-export const uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return false;
-    }
-  },
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    {
-      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
-      // requireDisplayName: false
-    }
-  ],
-  // Terms of service url.
-  tosUrl: ''
-};
