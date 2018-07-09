@@ -22,8 +22,8 @@ export default class Form extends Component {
   };
 
   componentDidMount() {
-    const { text, goodDeeds, type } = this.props;
-    this.setState({ text, goodDeeds, type });
+    const { text, goodDeeds, type, email } = this.props;
+    this.setState({ text, goodDeeds, type, email });
   }
 
   handleChange(event) {
