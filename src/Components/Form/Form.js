@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import uuidv1 from 'uuid/v1'; // Generate unique id;
 import {
   Checkbox,
@@ -18,7 +19,8 @@ export default class Form extends Component {
     goodDeeds: 0,
     moneyRaised: 0,
     type: '',
-    isAnonymous: false
+    isAnonymous: false,
+    isSubmited: false
   };
 
   componentDidMount() {
@@ -35,6 +37,7 @@ export default class Form extends Component {
     dbMessages.push(payload);
     this.updateCounter();
     event.preventDefault();
+    this.setState({ isSubmited: true });
   }
 
   handleToggleChange() {
@@ -121,6 +124,7 @@ export default class Form extends Component {
             Submit
           </MyButton>
         </form>
+        {this.state.isSubmited && <Redirect to="/" />}
       </Wrapper>
     );
   }
