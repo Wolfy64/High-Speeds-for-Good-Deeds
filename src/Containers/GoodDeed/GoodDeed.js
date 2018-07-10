@@ -6,13 +6,16 @@ import { Typography } from './style';
 
 export default class extends Component {
   state = {
-    isConnected: false
+    isConnected: false,
+    goodDeed: ''
   };
 
   uiConfig = {
     callbacks: {
-      signInSuccessWithAuthResult: () => false
+      signInSuccessWithAuthResult: () => true
     },
+    signInSuccessUrl: '/good-deeds/',
+    signInFlow: 'popup',
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -26,25 +29,22 @@ export default class extends Component {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isConnected: !!user });
     });
+
+    if (this.props.location.state) {
+      this.setState({ goodDeed: this.props.location.state.goodDeed });
+    }
   }
 
   render() {
-    let goodDeed = null;
-    if (this.props.location.state) {
-      goodDeed = this.props.location.state.goodDeed;
-    }
-
     return (
       <React.Fragment>
         <Typography>
-          {(goodDeed && <p>{goodDeed}</p>) || (
-            <p>Oops! Something went wrong... ¯\_(o_o)_/¯</p>
-          )}
+          <p>{this.state.goodDeed}</p>
         </Typography>
         {this.state.isConnected ? (
           <React.Fragment>
             <Form
-              text={goodDeed || ''}
+              text={this.state.goodDeed}
               goodDeeds={1}
               type="Good Deeds"
               email={firebase.auth().currentUser.email}
