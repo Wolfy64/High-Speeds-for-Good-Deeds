@@ -8,7 +8,7 @@ import {
   TextField
 } from '@material-ui/core';
 import { MyButton, Wrapper } from './style';
-import { dbMessages, dbCounter } from '../../config';
+import { dbMessages, totalGoodDeeds } from '../../config';
 
 export default class Form extends Component {
   state = {
@@ -35,7 +35,7 @@ export default class Form extends Component {
   handleSubmit(event) {
     const payload = this.handlePayload();
     dbMessages.push(payload);
-    this.updateCounter();
+    this.updateGoodDeeds();
     event.preventDefault();
     this.setState({ isSubmited: true });
   }
@@ -58,11 +58,8 @@ export default class Form extends Component {
     return payload;
   }
 
-  updateCounter() {
-    dbCounter.transaction(counter => {
-      counter.goodDeeds += 1;
-      return counter;
-    });
+  updateGoodDeeds() {
+    totalGoodDeeds.transaction(totalGoodDeeds => (totalGoodDeeds += 1));
   }
 
   render() {
