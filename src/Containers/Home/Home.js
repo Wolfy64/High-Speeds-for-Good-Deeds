@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { dbCounter } from '../../config';
+import { totalGoodDeeds } from '../../config';
+import justgivingApi from '../../config/axios';
 import {
   Board,
   Buttons,
@@ -10,16 +11,22 @@ import {
 
 class Layout extends Component {
   state = {
-    counter: {
-      goodDeeds: 0,
-      moneyRaised: 0
-    }
+    totalGoodDeeds: '',
+    totalMoneyRaised: ''
   };
 
   componentDidMount() {
-    dbCounter.on('value', snap => {
-      this.setState({ counter: snap.val() });
+    totalGoodDeeds.on('value', snap => {
+      this.setState({ totalGoodDeeds: snap.val() });
     });
+
+    justgivingApi
+      .get('fundraising/pages/ironmanon')
+      .then(res => {
+        const totalMoneyRaised = Math.round(res.data.totalRaisedOnline);
+        this.setState({ totalMoneyRaised });
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
@@ -27,8 +34,8 @@ class Layout extends Component {
       <React.Fragment>
         <Wrapper>
           <Counters
-            goodDeeds={this.state.counter.goodDeeds}
-            moneyRaised={this.state.counter.moneyRaised}
+            goodDeeds={this.state.totalGoodDeeds}
+            moneyRaised={this.state.totalMoneyRaised}
           />
           <Introduction />
           <Buttons />
