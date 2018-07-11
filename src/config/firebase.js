@@ -21,4 +21,4 @@ const database = app.database().ref();
 
 // Get a reference to the root of the Database
 export const dbMessages = database.child('messages');
-export const dbCounter = database.child('counter');
+export const totalGoodDeeds = database.child('totalGoodDeeds');
