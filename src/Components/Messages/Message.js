@@ -2,7 +2,7 @@ import React from 'react';
 import { Amount, Counter, Message, Name, Post, Text, Type } from './style';
 
 export default props => (
-  <Message moneyRaised={props.moneyRaised}>
+  <Message moneyRaised={props.type === 'Money Raised'}>
     <Post>
       <Name>
         {props.firstName} {props.lastName}
@@ -13,7 +13,7 @@ export default props => (
       <Amount>
         {props.moneyRaised ? `${props.moneyRaised} £` : props.goodDeeds}
       </Amount>
-      <Type>{props.moneyRaised ? 'Money Raised' : 'Good Deeds'}</Type>
+      <Type>{props.type}</Type>
     </Counter>
   </Message>
 );
