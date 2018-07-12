@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Background, Container, Image, Images, Messages } from './style';
+import justgivingApi from '../../config/axios';
 import { Message, Wrapper } from '../index';
 import { dbMessages, images } from '../../config';
 
@@ -9,14 +10,43 @@ export default class MessageBoard extends Component {
     images: []
   };
 
-  componentDidMount() {
-    this.setState({ images: [...images] });
+  getGoodDeedsMessages() {
     dbMessages.on('value', snap => {
-      if (snap.val()) this.setState({ messages: Object.values(snap.val()) });
+      if (snap.val()) {
+        const messages = [...this.state.messages, ...Object.values(snap.val())];
+        this.setState({ messages });
+      }
     });
   }
 
+  getMoneyRaisedMessages() {
+    justgivingApi
+      .get('fundraising/pages/ironmanon/donations')
+      .then(res => {
+        const messages = res.data.donations.map(donation => {
+          const message = {
+            _id: donation.id,
+            date: donation.donationDate,
+            firstName: donation.donorDisplayName,
+            text: donation.message || 'No message',
+            type: 'Money Raised',
+            moneyRaised: Math.round(donation.amount) || '?'
+          };
+          return message;
+        });
+        this.setState({ messages });
+      })
+      .catch(error => console.log(error));
+  }
+
+  componentDidMount() {
+    this.setState({ images: [...images] });
+    this.getGoodDeedsMessages();
+    this.getMoneyRaisedMessages();
+  }
+
   render() {
+    // console.log('render', this.state.messages);
     return (
       <Background>
         <Wrapper>
@@ -32,7 +62,7 @@ export default class MessageBoard extends Component {
                   return (
                     <Message
                       key={message._id}
-                      type={message.typeMessage}
+                      type={message.type}
                       firstName={message.firstName}
                       lastName={message.lastName}
                       text={message.text}
