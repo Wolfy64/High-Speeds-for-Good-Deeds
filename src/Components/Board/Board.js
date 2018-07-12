@@ -47,7 +47,6 @@ export default class MessageBoard extends Component {
   }
 
   render() {
-    // console.log('render', this.state.messages);
     return (
       <Background>
         <Wrapper>
