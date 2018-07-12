@@ -23,7 +23,7 @@ export default class MessageBoard extends Component {
     justgivingApi
       .get('fundraising/pages/ironmanon/donations')
       .then(res => {
-        const messages = res.data.donations.map(donation => {
+        let messages = res.data.donations.map(donation => {
           const message = {
             _id: donation.id,
             date: donation.donationDate,
@@ -34,6 +34,7 @@ export default class MessageBoard extends Component {
           };
           return message;
         });
+        messages = [...this.state.messages, ...messages];
         this.setState({ messages });
       })
       .catch(error => console.log(error));
