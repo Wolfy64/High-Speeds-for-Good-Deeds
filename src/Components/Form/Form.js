@@ -12,13 +12,12 @@ import { dbMessages, totalGoodDeeds } from '../../config';
 
 export default class Form extends Component {
   state = {
-    firstName: '',
-    lastName: '',
-    email: '',
+    displayName: '',
+    date: Date(),
     text: '',
+    email: '',
     goodDeeds: 0,
-    moneyRaised: 0,
-    type: '',
+    type: 'Good Deed',
     isAnonymous: false,
     isSubmited: false
   };
@@ -34,10 +33,11 @@ export default class Form extends Component {
 
   handleSubmit(event) {
     const payload = this.handlePayload();
-    dbMessages.push(payload);
+    // dbMessages.push(payload);
+    console.log(payload);
     this.updateGoodDeeds();
     event.preventDefault();
-    this.setState({ isSubmited: true });
+    // this.setState({ isSubmited: true });
   }
 
   handleToggleChange() {
@@ -48,8 +48,8 @@ export default class Form extends Component {
     const payload = { ...this.state };
 
     if (payload.isAnonymous) {
-      payload.firstName = 'Anonymous';
-      payload.lastName = null;
+      delete payload.displayName;
+      delete payload.email;
     }
 
     payload._id = uuidv1();
@@ -68,19 +68,10 @@ export default class Form extends Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <TextField
             required
-            name="firstName"
+            name="displayName"
             type="text"
-            label="First Name"
-            value={this.state.firstName}
-            onChange={this.handleChange.bind(this)}
-            fullWidth
-          />
-          <TextField
-            required
-            name="lastName"
-            type="text"
-            label="Last Name"
-            value={this.state.lastName}
+            label="Full Name"
+            value={this.state.displayName}
             onChange={this.handleChange.bind(this)}
             fullWidth
           />
