@@ -12,50 +12,59 @@ import { dbMessages, totalGoodDeeds } from '../../config';
 
 export default class Form extends Component {
   state = {
-    displayName: '',
-    date: Date(),
-    text: '',
-    email: '',
-    goodDeeds: 0,
-    type: 'Good Deed',
+    message: {
+      displayName: '',
+      date: Date(),
+      text: '',
+      email: '',
+      goodDeeds: 1,
+      type: 'Good Deed'
+    },
     isAnonymous: false,
     isSubmited: false
   };
 
   componentDidMount() {
-    const { text, goodDeeds, type, email } = this.props;
-    this.setState({ text, goodDeeds, type, email });
+    const { text, email, displayName } = this.props;
+    this.setState({
+      message: {
+        ...this.state.message,
+        text,
+        email,
+        displayName
+      }
+    });
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      message: {
+        ...this.state.message,
+        ...{ [event.target.name]: event.target.value }
+      }
+    });
   }
 
   handleSubmit(event) {
-    const payload = this.handlePayload();
-    // dbMessages.push(payload);
-    console.log(payload);
+    const message = this.handleMessage();
+    dbMessages.push(message);
     this.updateGoodDeeds();
     event.preventDefault();
-    // this.setState({ isSubmited: true });
+    this.setState({ isSubmited: true });
   }
 
   handleToggleChange() {
     this.setState({ isAnonymous: !this.state.isAnonymous });
   }
 
-  handlePayload() {
-    const payload = { ...this.state };
-
-    if (payload.isAnonymous) {
-      delete payload.displayName;
-      delete payload.email;
+  handleMessage() {
+    const message = { ...this.state.message };
+    if (this.state.isAnonymous) {
+      message.displayName = 'Anonymous';
     }
-
-    payload._id = uuidv1();
-    delete payload.isAnonymous;
-
-    return payload;
+    message._id = uuidv1();
+    this.setState({ message });
+    return message;
   }
 
   updateGoodDeeds() {
@@ -71,7 +80,7 @@ export default class Form extends Component {
             name="displayName"
             type="text"
             label="Full Name"
-            value={this.state.displayName}
+            value={this.state.message.displayName}
             onChange={this.handleChange.bind(this)}
             fullWidth
           />
@@ -80,7 +89,7 @@ export default class Form extends Component {
             name="email"
             type="email"
             label="Email"
-            value={this.state.email}
+            value={this.state.message.email}
             onChange={this.handleChange.bind(this)}
             fullWidth
           />
@@ -90,7 +99,7 @@ export default class Form extends Component {
             type="text"
             label="Message"
             multiline
-            value={this.state.text}
+            value={this.state.message.text}
             onChange={this.handleChange.bind(this)}
             fullWidth
           />
