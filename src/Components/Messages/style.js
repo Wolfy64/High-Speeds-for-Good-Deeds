@@ -41,7 +41,8 @@ export const Post = styled.div`
 `;
 
 export const Text = styled.p`
-  text-align: justify;
+  text-align: start;
+  font-size: small;
 `;
 
 export const Type = styled.p`
