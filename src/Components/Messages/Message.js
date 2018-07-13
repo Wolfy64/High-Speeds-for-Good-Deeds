@@ -4,9 +4,7 @@ import { Amount, Counter, Message, Name, Post, Text, Type } from './style';
 export default props => (
   <Message moneyRaised={props.type === 'Money Raised'}>
     <Post>
-      <Name>
-        {props.firstName} {props.lastName}
-      </Name>
+      <Name>{props.displayName}</Name>
       <Text>{props.text}</Text>
     </Post>
     <Counter>
