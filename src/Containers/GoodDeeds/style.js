@@ -9,4 +9,7 @@ export const Typography = styled.div`
   color: #026670;
   text-align: center;
   font-size: 1.5rem;
+  @media (max-width: 960px) {
+    border-radius: 0px;
+  }
 `;
