@@ -30,7 +30,7 @@ export default class MessageBoard extends Component {
             displayName: donation.donorDisplayName,
             text: donation.message || 'No message',
             type: 'Money Raised',
-            moneyRaised: Math.round(donation.amount) || '?'
+            moneyRaised: Math.round(donation.amount) || null
           };
           return message;
         });
