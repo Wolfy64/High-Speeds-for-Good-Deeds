@@ -27,7 +27,7 @@ export default class MessageBoard extends Component {
           const message = {
             _id: donation.id,
             date: donation.donationDate,
-            firstName: donation.donorDisplayName,
+            displayName: donation.donorDisplayName,
             text: donation.message || 'No message',
             type: 'Money Raised',
             moneyRaised: Math.round(donation.amount) || '?'
@@ -63,8 +63,7 @@ export default class MessageBoard extends Component {
                     <Message
                       key={message._id}
                       type={message.type}
-                      firstName={message.firstName}
-                      lastName={message.lastName}
+                      displayName={message.displayName}
                       text={message.text}
                       goodDeeds={message.goodDeeds}
                       moneyRaised={message.moneyRaised}
