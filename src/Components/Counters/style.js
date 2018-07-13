@@ -14,6 +14,11 @@ export const Amount = styled.span`
   }
 `;
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Counter = styled.div`
     flex: 1;
     margin-right: 20px;

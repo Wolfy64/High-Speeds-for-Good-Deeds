@@ -1,6 +1,5 @@
 import React from 'react';
-import { Amount, Typography, Counter } from './style';
-import { Container } from '../index';
+import { Amount, Typography, Container, Counter } from './style';
 
 export default props => {
   return (
