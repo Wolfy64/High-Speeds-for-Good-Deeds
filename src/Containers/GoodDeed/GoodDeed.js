@@ -45,9 +45,8 @@ export default class extends Component {
           <React.Fragment>
             <Form
               text={this.state.goodDeed}
-              goodDeeds={1}
-              type="Good Deeds"
               email={firebase.auth().currentUser.email}
+              displayName={firebase.auth().currentUser.displayName}
             />
             <button onClick={() => firebase.auth().signOut()}>Sign Out</button>
           </React.Fragment>
