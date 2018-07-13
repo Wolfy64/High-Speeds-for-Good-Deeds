@@ -26,7 +26,7 @@ export default class MessageBoard extends Component {
         let messages = res.data.donations.map(donation => {
           const message = {
             _id: donation.id,
-            date: donation.donationDate,
+            date: this.handleDate(donation.donationDate),
             displayName: donation.donorDisplayName,
             text: donation.message || 'No message',
             type: 'Money Raised',
@@ -37,7 +37,20 @@ export default class MessageBoard extends Component {
         messages = [...this.state.messages, ...messages];
         this.setState({ messages });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  handleDate(date) {
+    const regex = /\d{13}/g;
+    date = date.match(regex);
+    date = parseInt(date, 10);
+    return date;
+  }
+
+  sortMessagesByDate() {
+    return this.state.messages.sort((a, b) => a - b);
   }
 
   componentDidMount() {
@@ -58,7 +71,7 @@ export default class MessageBoard extends Component {
             </Images>
             {this.state.messages && (
               <Messages>
-                {this.state.messages.map(message => {
+                {this.sortMessagesByDate().map(message => {
                   return (
                     <Message
                       key={message._id}
