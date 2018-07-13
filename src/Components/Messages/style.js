@@ -9,6 +9,7 @@ export const Amount = styled.p`
 export const Counter = styled.div`
   margin: auto;
   flex: 1;
+  max-width: 100px;
 `;
 
 export const Message = styled.div`
@@ -18,7 +19,6 @@ export const Message = styled.div`
   margin: auto;
   margin-bottom: 10px;
   border-radius: 5px;
-  width: 300px;
   min-height: 100px;
   border: 2px solid ${props => (props.moneyRaised ? '#9fedd7' : '#026670')};
 `;
@@ -38,6 +38,7 @@ export const Post = styled.div`
   padding: 5px;
   border-radius: 3px 0px 0px 3px;
   word-wrap: break-word;
+  flex: 2;
 `;
 
 export const Text = styled.p`
