@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { Form } from '../../Components';
-import { Typography } from './style';
+import { Form, Wrapper } from '../../Components';
+import { BtnLogOut, Typography } from './style';
 
 export default class extends Component {
   state = {
@@ -42,14 +42,20 @@ export default class extends Component {
           <p>{this.state.goodDeed}</p>
         </Typography>
         {this.state.isConnected ? (
-          <React.Fragment>
+          <Wrapper>
             <Form
               text={this.state.goodDeed}
               email={firebase.auth().currentUser.email}
               displayName={firebase.auth().currentUser.displayName}
             />
-            <button onClick={() => firebase.auth().signOut()}>Sign Out</button>
-          </React.Fragment>
+            <BtnLogOut
+              variant="contained"
+              color="secondary"
+              onClick={() => firebase.auth().signOut()}
+            >
+              Sign Out
+            </BtnLogOut>
+          </Wrapper>
         ) : (
           <StyledFirebaseAuth
             uiConfig={this.uiConfig}
