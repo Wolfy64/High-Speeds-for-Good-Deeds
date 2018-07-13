@@ -6,12 +6,12 @@ export default props => {
   return (
     <Container>
       <Counter>
+        <Typography>Good deeds</Typography>
         <Amount>{props.goodDeeds}</Amount>
-        <Typography>Good Deeds</Typography>
       </Counter>
       <Counter moneyRaised>
-        <Amount>{props.moneyRaised} £</Amount>
         <Typography>Money Raised</Typography>
+        <Amount>£ {props.moneyRaised}</Amount>
       </Counter>
     </Container>
   );
