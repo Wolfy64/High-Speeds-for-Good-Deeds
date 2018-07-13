@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export const App = styled.div`
-  font-family: Roboto, sans-serif;
+  font-family: Lato, Roboto, sans-serif;
   font-size: 16px;
   a {
     text-decoration: none;
