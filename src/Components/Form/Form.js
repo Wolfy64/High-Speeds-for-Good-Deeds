@@ -14,7 +14,7 @@ export default class Form extends Component {
   state = {
     message: {
       displayName: '',
-      date: Date(),
+      date: new Date().getTime(),
       text: '',
       email: '',
       goodDeeds: 1,
