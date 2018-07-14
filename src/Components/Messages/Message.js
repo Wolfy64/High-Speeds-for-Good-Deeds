@@ -9,7 +9,7 @@ export default props => (
     </Post>
     <Counter>
       <Amount>
-        {props.moneyRaised ? `${props.moneyRaised} £` : props.goodDeeds}
+        {props.moneyRaised ? `£ ${props.moneyRaised}` : props.goodDeeds}
       </Amount>
       <Type>{props.type}</Type>
     </Counter>
