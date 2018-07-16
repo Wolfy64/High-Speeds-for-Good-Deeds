@@ -66,7 +66,9 @@ export default class MessageBoard extends Component {
           <Container>
             <Images>
               {this.state.images.map(image => (
-                <Image key={image.id} src={image.src} />
+                <Image key={image.id}>
+                  <img src={image.src} alt="" />
+                </Image>
               ))}
             </Images>
             {this.state.messages && (

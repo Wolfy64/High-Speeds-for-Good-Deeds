@@ -14,19 +14,29 @@ export const Container = styled.div`
 `;
 
 export const Images = styled.div`
-  text-align: center;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  height: max-content;
   flex: 1;
-`;
 
-export const Image = styled.img`
-  margin: 10px;
-  width: 35%;
-  border: 2px solid #9fedd7;
-  border-radius: 5px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
   @media (max-width: 500px) {
-    width: 10%;
+    /* width: 10%; */
   }
+`;
+
+export const Image = styled.div`
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #9fedd7;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 export const Messages = styled.div`
