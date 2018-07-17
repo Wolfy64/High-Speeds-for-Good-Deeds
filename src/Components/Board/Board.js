@@ -4,10 +4,13 @@ import justgivingApi from '../../config/axios';
 import { Message, Wrapper } from '../index';
 import { dbMessages, images } from '../../config';
 
+import Swiper from 'swiper';
+
 export default class MessageBoard extends Component {
   state = {
     messages: [],
-    images: []
+    images: [],
+    showCarousel: false
   };
 
   getGoodDeedsMessages() {
@@ -54,39 +57,84 @@ export default class MessageBoard extends Component {
   }
 
   componentDidMount() {
+    window.addEventListener(
+      'resize',
+      () => this.setState({ showCarousel: window.innerWidth < 700 }),
+      false
+    );
     this.setState({ images: [...images] });
     this.getGoodDeedsMessages();
     this.getMoneyRaisedMessages();
   }
 
   render() {
+    const carousel = (
+      <Images
+        className="swiper-container"
+        style={{ width: '100%', marginBottom: '10px' }}
+      >
+        <div className="swiper-wrapper">
+          {this.state.images.map(image => (
+            <Image
+              key={image.id}
+              className="swiper-slide"
+              onClick={() => alert('View image')}
+            >
+              <img src={image.src} alt="" />
+            </Image>
+          ))}
+        </div>
+        <div className="swiper-button-prev" />
+        <div className="swiper-button-next" />
+      </Images>
+    );
+
+    const images = (
+      <Images>
+        {this.state.images.map(image => (
+          <Image key={image.id} onClick={() => alert('View image')}>
+            <img src={image.src} alt="" />
+          </Image>
+        ))}
+      </Images>
+    );
+
+    const messages = (
+      <Messages>
+        {this.sortMessagesByDate().map(message => {
+          return (
+            <Message
+              key={message._id}
+              type={message.type}
+              displayName={message.displayName}
+              text={message.text}
+              goodDeeds={message.goodDeeds}
+              moneyRaised={message.moneyRaised}
+            />
+          );
+        })}
+      </Messages>
+    );
+
+    new Swiper('.swiper-container', {
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 3,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 3000
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
+    });
     return (
       <Background>
         <Wrapper>
           <Container>
-            <Images>
-              {this.state.images.map(image => (
-                <Image key={image.id}>
-                  <img src={image.src} alt="" />
-                </Image>
-              ))}
-            </Images>
-            {this.state.messages && (
-              <Messages>
-                {this.sortMessagesByDate().map(message => {
-                  return (
-                    <Message
-                      key={message._id}
-                      type={message.type}
-                      displayName={message.displayName}
-                      text={message.text}
-                      goodDeeds={message.goodDeeds}
-                      moneyRaised={message.moneyRaised}
-                    />
-                  );
-                })}
-              </Messages>
-            )}
+            {this.state.showCarousel ? carousel : images}
+            {this.state.messages && messages}
           </Container>
         </Wrapper>
       </Background>

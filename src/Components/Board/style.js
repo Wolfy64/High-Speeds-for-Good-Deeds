@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   padding: 10px;
-  @media (max-width: 500px) {
+  @media (max-width: 700px) {
     flex-direction: column;
   }
 `;
@@ -20,13 +20,13 @@ export const Images = styled.div`
   height: max-content;
   flex: 1;
 
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+
   img {
     width: 100%;
     height: 100%;
-  }
-
-  @media (max-width: 500px) {
-    /* width: 10%; */
   }
 `;
 
