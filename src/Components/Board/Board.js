@@ -4,7 +4,8 @@ import justgivingApi from '../../config/axios';
 import { Message, Wrapper } from '../index';
 import { dbMessages, images } from '../../config';
 
-import Swiper from 'swiper';
+// import Swiper from 'swiper';
+import Swiper from 'swiper/dist/js/swiper.js';
 
 export default class MessageBoard extends Component {
   state = {
