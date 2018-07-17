@@ -33,12 +33,16 @@ class Introduction extends Component {
     const { classes } = this.props;
     return (
       <Wrapper>
-        {/* <Switch checked={this.state.isOpen} onChange={this.handleChange} /> */}
-        <Collapse
-          in={this.state.isOpen}
-          collapsedHeight="300px"
-          onClick={this.handleChange}
-        >
+        <Collapse in={this.state.isOpen} collapsedHeight="300px">
+          <h4
+            style={{
+              backgroundColor: '#fce280',
+              width: 'fit-content',
+              margin: 'auto'
+            }}
+          >
+            Maybe a title here ? Like "My story ?"
+          </h4>
           <Typography>
             As some of you may
             <Tooltip
@@ -229,6 +233,7 @@ class Introduction extends Component {
           <Switch
             checked={this.state.isOpen}
             onChange={this.handleChange}
+            onClick={this.handleChange}
             classes={{
               switchBase: classes.colorSwitchBase,
               checked: classes.colorChecked,
