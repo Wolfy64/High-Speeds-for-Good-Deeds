@@ -1,5 +1,5 @@
 import React from 'react';
-import Swiper from 'swiper';
+import Swiper from 'swiper/dist/js/swiper.js';
 import { Image, Images } from './style';
 
 export default props => {
