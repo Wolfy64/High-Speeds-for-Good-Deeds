@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Background, Container, Image, Images, Messages } from './style';
 import justgivingApi from '../../config/axios';
-import { Message, Wrapper } from '../index';
+import { Message, Modal, Wrapper } from '../index';
 import { dbMessages, images } from '../../config';
-
-// import Swiper from 'swiper';
 import Swiper from 'swiper/dist/js/swiper.js';
 
 export default class MessageBoard extends Component {
   state = {
     messages: [],
     images: [],
-    showCarousel: false
+    showCarousel: false,
+    showModal: false,
+    image: {}
   };
 
   getGoodDeedsMessages() {
@@ -57,6 +57,19 @@ export default class MessageBoard extends Component {
     return this.state.messages.sort((a, b) => a - b);
   }
 
+  handleToggleModal = () => this.setState({ showModal: !this.state.showModal });
+
+  handleShowImage = event => {
+    console.log(event.target);
+    const image = {
+      src: event.target.src,
+      title: event.target.alt
+    };
+    this.handleToggleModal();
+    this.setState({ image });
+    console.log(this.state.image);
+  };
+
   componentDidMount() {
     window.addEventListener(
       'resize',
@@ -79,7 +92,7 @@ export default class MessageBoard extends Component {
             <Image
               key={image.id}
               className="swiper-slide"
-              onClick={() => alert('View image')}
+              onClick={this.handleShowImage}
             >
               <img src={image.src} alt="" />
             </Image>
@@ -93,8 +106,12 @@ export default class MessageBoard extends Component {
     const images = (
       <Images>
         {this.state.images.map(image => (
-          <Image key={image.id} onClick={() => alert('View image')}>
-            <img src={image.src} alt="" />
+          <Image key={image.id}>
+            <img
+              src={image.src}
+              alt={image.title}
+              onClick={this.handleShowImage}
+            />
           </Image>
         ))}
       </Images>
@@ -132,6 +149,15 @@ export default class MessageBoard extends Component {
     });
     return (
       <Background>
+        <Modal show={this.state.showModal} onClick={this.handleToggleModal}>
+          <img
+            width="50%"
+            height="auto"
+            src={this.state.image.src}
+            alt={this.state.image.title}
+          />
+          <p>{this.state.image.title}</p>
+        </Modal>
         <Wrapper>
           <Container>
             {this.state.showCarousel ? carousel : images}
