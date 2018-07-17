@@ -19,11 +19,8 @@ export default props => {
 
   new Swiper('.swiper-container', {
     direction: 'horizontal',
-    slidesPerView: 3,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 3000
-    },
+    slidesPerView: 'auto',
+    allowTouchMove: false,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
