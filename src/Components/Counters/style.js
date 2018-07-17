@@ -1,31 +1,29 @@
 import styled from 'styled-components';
 
 export const Amount = styled.span`
-  font-size: 2rem;
+  flex: 1;
   margin: auto;
-  margin-right: 0;
+  font-size: xx-large;
+  font-weight: 600;
 
   @media (max-width: 500px) {
-    margin: auto;
-    margin-bottom: inherit;
+    padding-top: 10px;
+  }
+  @media (max-width: 320px) {
+    font-size: x-large;
   }
 `;
 
-export const Typography = styled.span`
-  margin: auto;
-  margin-left: 5px;
-  white-space: nowrap;
-
-  @media (max-width: 500px) {
-    margin: auto;
-    margin-top: inherit;
-  }
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Counter = styled.div`
     flex: 1;
     margin-right: 20px;
     margin-left: 20px;
+    padding: 10px;
     width: 100px;
     display: flex;
     height: 100px;
@@ -35,7 +33,23 @@ export const Counter = styled.div`
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 
     @media (max-width: 500px) {
-      flex-direction: column;
+      flex-direction: column-reverse;
   }
 }
+`;
+
+export const Typography = styled.span`
+  flex: 1;
+  margin: auto;
+  font-size: x-large;
+  font-weight: 600;
+
+  @media (max-width: 500px) {
+    font-size: initial;
+    padding-top: 10px;
+  }
+
+  @media (max-width: 320px) {
+    font-size: smaller;
+  }
 `;

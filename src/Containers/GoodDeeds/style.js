@@ -1,9 +1,4 @@
 import styled from 'styled-components';
-import Wrapper from '../UI/Wrapper';
-
-export const MyWrapper = styled(Wrapper)`
-  text-align: center;
-`;
 
 export const Typography = styled.div`
   width: 100%;
@@ -14,4 +9,7 @@ export const Typography = styled.div`
   color: #026670;
   text-align: center;
   font-size: 1.5rem;
+  @media (max-width: 960px) {
+    border-radius: 0px;
+  }
 `;

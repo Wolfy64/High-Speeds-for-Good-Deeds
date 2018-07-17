@@ -1,15 +1,9 @@
 // Firebase App is always required and must be first
-import firebase from 'firebase/app';
-import 'firebase/app';
-// To generate uuid;
-import uuidv1 from 'uuid/v1';
+import firebase from 'firebase';
 
 // Add additional services that you want to use
-import 'firebase/database';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-// import 'firebase/messaging';
-// import 'firebase/functions';
+import 'firebase/database/dist/index.cjs';
+import 'firebase/auth/dist/index.cjs';
 
 // Initialize Firebase
 const config = {
@@ -23,19 +17,8 @@ const config = {
 
 // Initialize the default app
 const app = firebase.initializeApp(config);
+const database = app.database().ref();
 
 // Get a reference to the root of the Database
-export const database = app
-  .database()
-  .ref()
-  .child(`messages/${uuidv1()}`);
-
-export const counter = app
-  .database()
-  .ref()
-  .child('counter');
-
-export const getMessages = app
-  .database()
-  .ref()
-  .child('messages/');
+export const dbMessages = database.child('messages');
+export const totalGoodDeeds = database.child('totalGoodDeeds');

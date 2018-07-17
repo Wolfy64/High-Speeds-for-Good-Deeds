@@ -1,20 +1,17 @@
 import React from 'react';
-import Container from '../container';
-import { Amount, Typography, Counter } from './style';
+import { Amount, Typography, Container, Counter } from './style';
 
-const Counters = props => {
+export default props => {
   return (
     <Container>
       <Counter>
+        <Typography>Good deeds</Typography>
         <Amount>{props.goodDeeds}</Amount>
-        <Typography>Good Deeds</Typography>
       </Counter>
       <Counter moneyRaised>
-        <Amount>{props.moneyRaised} £</Amount>
         <Typography>Money Raised</Typography>
+        <Amount>£ {props.moneyRaised}</Amount>
       </Counter>
     </Container>
   );
 };
-
-export default Counters;

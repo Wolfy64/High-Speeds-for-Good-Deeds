@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
-  margin: auto;
-  max-width: 960px;
+export const Messages = styled.div`
   text-align: center;
+  flex: 2;
 `;

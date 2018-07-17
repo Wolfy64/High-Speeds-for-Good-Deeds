@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
-import { counter } from '../config';
-import { Board, Buttons, Counters, Introduction, Wrapper } from '../Components';
+import { Route, Switch } from 'react-router-dom';
+import { GoodDeed, GoodDeeds, Home, MoneyRaised } from './index';
+import { Error, Header, Footer, Wrapper } from '../Components';
 
-class Layout extends Component {
-  state = {
-    counter: {
-      goodDeeds: 0,
-      moneyRaised: 0
-    }
-  };
-
-  componentDidMount() {
-    counter.on('value', snap => {
-      this.setState({ counter: snap.val() });
-    });
-  }
+export default class extends Component {
+  state = {};
 
   render() {
     return (
       <React.Fragment>
-        <Wrapper>
-          <Counters
-            goodDeeds={this.state.counter.goodDeeds}
-            moneyRaised={this.state.counter.moneyRaised}
-          />
-          <Introduction />
-          <Buttons />
+        <Header />
+        <Wrapper
+          style={{
+            minHeight: '97vh',
+            paddingTop: '150px',
+            textAlign: 'center'
+          }}
+        >
+          <Switch>
+            <Route path="/money-raised" component={MoneyRaised} />
+            <Route path="/good-deeds/:id" component={GoodDeed} />
+            <Route path="/good-deeds" component={GoodDeeds} />
+            <Route path="/" component={Home} exact />
+            <Route component={Error} />
+          </Switch>
         </Wrapper>
-        <Board />
+        <Footer />
       </React.Fragment>
     );
   }
 }
-
-export default Layout;

@@ -1,101 +1,128 @@
 import React, { Component } from 'react';
-import { database } from '../../config';
+import { Redirect } from 'react-router-dom';
+import uuidv1 from 'uuid/v1'; // Generate unique id;
+import {
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  TextField
+} from '@material-ui/core';
+import { MyButton, Wrapper } from './style';
+import { dbMessages, totalGoodDeeds } from '../../config';
 
 export default class Form extends Component {
   state = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    text: '',
-    goodDeeds: 0,
-    moneyRaised: 0,
-    type: '',
-    isAnonymous: false
+    message: {
+      displayName: '',
+      date: new Date().getTime(),
+      text: '',
+      email: '',
+      goodDeeds: 1,
+      type: 'Good Deed'
+    },
+    isAnonymous: false,
+    isSubmited: false
   };
 
   componentDidMount() {
-    const { text, goodDeeds, type } = this.props;
-    this.setState({ text, goodDeeds, type });
+    const { text, email, displayName } = this.props;
+    this.setState({
+      message: {
+        ...this.state.message,
+        text,
+        email,
+        displayName
+      }
+    });
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      message: {
+        ...this.state.message,
+        ...{ [event.target.name]: event.target.value }
+      }
+    });
   }
 
-  handleSubmit() {
-    const payload = this.handlePayload();
-    database.set(payload);
+  handleSubmit(event) {
+    const message = this.handleMessage();
+    dbMessages.push(message);
+    this.updateGoodDeeds();
+    event.preventDefault();
+    this.setState({ isSubmited: true });
   }
 
   handleToggleChange() {
     this.setState({ isAnonymous: !this.state.isAnonymous });
   }
 
-  handlePayload() {
-    const payload = this.state;
-
-    if (payload.isAnonymous) {
-      payload['firstName'] = 'Anonymous';
-      payload['lastName'] = null;
+  handleMessage() {
+    const message = { ...this.state.message };
+    if (this.state.isAnonymous) {
+      message.displayName = 'Anonymous';
     }
+    message._id = uuidv1();
+    this.setState({ message });
+    return message;
+  }
 
-    delete payload.isAnonymous;
-    return payload;
+  updateGoodDeeds() {
+    totalGoodDeeds.transaction(totalGoodDeeds => (totalGoodDeeds += 1));
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <label>
-          First Name:
-          <input
+      <Wrapper>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <TextField
             required
-            name="firstName"
+            name="displayName"
             type="text"
-            value={this.state.firstName}
+            label="Full Name"
+            value={this.state.message.displayName}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Last Name:
-          <input
-            required
-            name="lastName"
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange.bind(this)}
-          />
-        </label>
-        <label>
-          Email:
-          <input
+          <TextField
             required
             name="email"
             type="email"
-            value={this.state.value}
+            label="Email"
+            value={this.state.message.email}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Message:
-          <textarea
+          <TextField
             required
             name="text"
-            value={this.state.text}
+            type="text"
+            label="Message"
+            multiline
+            value={this.state.message.text}
             onChange={this.handleChange.bind(this)}
+            fullWidth
           />
-        </label>
-        <label>
-          Hide my name !:
-          <input
-            name="anonymous"
-            type="checkbox"
-            checked={this.state.isAnonymous}
-            onChange={this.handleToggleChange.bind(this)}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+          <div style={{ textAlign: 'left' }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.isAnonymous}
+                  onChange={this.handleToggleChange.bind(this)}
+                  color="primary"
+                />
+              }
+              label="Hide my name !"
+            />
+          </div>
+          <Divider />
+
+          <MyButton type="submit" variant="contained" color="primary">
+            Submit
+          </MyButton>
+        </form>
+        {this.state.isSubmited && <Redirect to="/" />}
+      </Wrapper>
     );
   }
 }
