@@ -12,8 +12,3 @@ export const Container = styled.div`
     flex-direction: column;
   }
 `;
-
-export const Messages = styled.div`
-  text-align: center;
-  flex: 2;
-`;

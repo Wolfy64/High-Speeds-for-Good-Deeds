@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import justgivingApi from '../../config/axios';
-import { Background, Container, Messages } from './style';
-import { Message, Modal, Images, Wrapper } from '../index';
+import { Background, Container } from './style';
+import { Messages, Modal, Images, Wrapper } from '../index';
 import { dbMessages, images } from '../../config';
 
 export default class MessageBoard extends Component {
@@ -70,33 +70,19 @@ export default class MessageBoard extends Component {
   };
 
   componentDidMount() {
+    this.setState({ images: [...images] });
+    this.getGoodDeedsMessages();
+    this.getMoneyRaisedMessages();
+    this.sortMessagesByDate();
+  }
+
+  render() {
     window.addEventListener(
       'resize',
       () => this.setState({ showCarousel: window.innerWidth < 700 }),
       false
     );
-    this.setState({ images: [...images] });
-    this.getGoodDeedsMessages();
-    this.getMoneyRaisedMessages();
-  }
-
-  render() {
-    const messages = (
-      <Messages>
-        {this.sortMessagesByDate().map(message => {
-          return (
-            <Message
-              key={message._id}
-              type={message.type}
-              displayName={message.displayName}
-              text={message.text}
-              goodDeeds={message.goodDeeds}
-              moneyRaised={message.moneyRaised}
-            />
-          );
-        })}
-      </Messages>
-    );
+    console.log(this.state.messages.length > 1);
     return (
       <Background>
         <Modal show={this.state.showModal} onClick={this.handleToggleModal}>
@@ -115,7 +101,7 @@ export default class MessageBoard extends Component {
               images={this.state.images}
               clicked={this.handleShowImage}
             />
-            {this.state.messages && messages}
+            <Messages messages={this.sortMessagesByDate()} />
           </Container>
         </Wrapper>
       </Background>
