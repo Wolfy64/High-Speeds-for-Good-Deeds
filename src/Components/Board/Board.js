@@ -4,6 +4,8 @@ import { Background, Container } from './style';
 import { Messages, Modal, Images, Wrapper } from '../index';
 import { dbMessages, images } from '../../config';
 
+import ImageZoomed from '../UI/ImagedZoomed';
+
 export default class MessageBoard extends Component {
   state = {
     messages: [],
@@ -83,37 +85,10 @@ export default class MessageBoard extends Component {
     return (
       <Background>
         <Modal show={this.state.showModal} onClick={this.handleToggleModal}>
-          <div>
-            <img
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: '500px',
-                height: '500px',
-                marginTop: '-250px',
-                marginLeft: '-250px'
-              }}
-              width="50%"
-              height="auto"
-              src={this.state.image.src}
-              alt={this.state.image.title}
-            />
-            <h2
-              style={{
-                color: 'white',
-                position: 'absolute',
-                width: '100%',
-                bottom: '10%',
-                background: 'rgba(0, 0, 0, 0.5)',
-                width: '50%',
-                left: '25%',
-                borderRadius: '5px'
-              }}
-            >
-              {this.state.image.title}
-            </h2>
-          </div>
+          <ImageZoomed>
+            <img src={this.state.image.src} alt={this.state.image.title} />
+            <p>{this.state.image.title}</p>
+          </ImageZoomed>
         </Modal>
         <Wrapper>
           <Container>
