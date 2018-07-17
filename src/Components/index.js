@@ -8,6 +8,7 @@ export { default as Footer } from './Footer/Footer';
 export { default as Form } from './Form/Form';
 export { default as GoodDeedList } from './GoodDeedList/GoodDeedList';
 export { default as Header } from './Header/Header';
+export { default as Images } from './Images/Images';
 export { default as Introduction } from './Introduction/Introduction';
 export { default as Message } from './Messages/Message';
 export { default as Modal } from './UI/Modal';
