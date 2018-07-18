@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { totalGoodDeeds } from '../../config';
-import justgivingApi from '../../config/axios';
+import { justgivingApi, totalGoodDeeds } from '../../config';
 import {
   Board,
   Buttons,
