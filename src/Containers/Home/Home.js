@@ -11,22 +11,42 @@ import {
 
 class Layout extends Component {
   state = {
-    totalGoodDeeds: '',
-    totalMoneyRaised: ''
+    totalGoodDeeds: 0,
+    totalMoneyRaised: 0
   };
 
   componentDidMount() {
-    totalGoodDeeds.on('value', snap => {
-      this.setState({ totalGoodDeeds: snap.val() });
-    });
+    this.getGoodDeeds();
+    this.getMoneyRaised();
+  }
 
-    justgivingApi
+  getGoodDeeds() {
+    totalGoodDeeds.on('value', snap =>
+      this.setState({ totalGoodDeeds: snap.val() })
+    );
+  }
+
+  getMoneyRaised() {
+    // MoneyRaised from "ironmanon" page
+    const ironmanon = justgivingApi
       .get('fundraising/pages/ironmanon')
-      .then(res => {
-        const totalMoneyRaised = Math.round(res.data.totalRaisedOnline);
-        this.setState({ totalMoneyRaised });
-      })
+      .then(res => res.data.totalRaisedOnline)
       .catch(error => console.log(error));
+
+    // MoneyRaised from "bb2b" page
+    const bb2b = justgivingApi
+      .get('fundraising/pages/bb2b')
+      .then(res => res.data.totalRaisedOnline)
+      .catch(error => console.log(error));
+
+    Promise.all([ironmanon, bb2b])
+      .then(res => {
+        const [ironmanon, bb2b] = res;
+        this.setState({
+          totalMoneyRaised: Math.round(Number(ironmanon) + Number(bb2b))
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
