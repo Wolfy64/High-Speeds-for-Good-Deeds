@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import justgivingApi from '../../config/axios';
+import { justgivingApi, firebaseApi } from '../../config';
 import { Background, Container } from './style';
-import { Messages, Modal, Images, Wrapper } from '../index';
-import { dbMessages, images } from '../../config';
+import { Messages, Modal, Images, ImageZoomed, Wrapper } from '../index';
+// import { dbMessages, images } from '../../config';
 
-import ImageZoomed from '../UI/ImagedZoomed';
+// import axios from 'axios';
 
 export default class MessageBoard extends Component {
   state = {
@@ -15,19 +15,30 @@ export default class MessageBoard extends Component {
     image: {}
   };
 
-  getGoodDeedsMessages() {
-    dbMessages.on('value', snap => {
-      if (snap.val()) {
-        const messages = [...this.state.messages, ...Object.values(snap.val())];
-        this.setState({ messages });
-      }
-    });
+  componentDidMount() {
+    window.addEventListener(
+      'resize',
+      () => this.setState({ showCarousel: window.innerWidth < 700 }),
+      false
+    );
+    this.getMessages();
+    console.log('end');
   }
 
-  getMoneyRaisedMessages() {
-    justgivingApi
+  getMessages() {
+    let goodDeeds = firebaseApi
+      .get('messages.json')
+      .then(res => {
+        console.log('[goodDeeds]');
+        return Object.values(res.data);
+      })
+      .catch(err => console.log(err));
+
+    // Messages from "ironmanon" on JustGiving API
+    let ironmanon = justgivingApi
       .get('fundraising/pages/ironmanon/donations')
       .then(res => {
+        console.log('[ironmanon]');
         let messages = res.data.donations.map(donation => {
           const message = {
             _id: donation.id,
@@ -39,12 +50,41 @@ export default class MessageBoard extends Component {
           };
           return message;
         });
-        messages = [...this.state.messages, ...messages];
-        this.setState({ messages });
+        return messages;
       })
       .catch(error => {
         console.log(error);
       });
+
+    // Messages from "bb2b" on JustGiving API
+    let bb2b = justgivingApi
+      .get('fundraising/pages/bb2b/donations')
+      .then(res => {
+        console.log('[bb2b]');
+        let messages = res.data.donations.map(donation => {
+          const message = {
+            _id: donation.id,
+            date: this.handleDate(donation.donationDate),
+            displayName: donation.donorDisplayName,
+            text: donation.message || 'No message',
+            type: 'Money Raised',
+            moneyRaised: Math.round(donation.amount) || null
+          };
+          return message;
+        });
+        return messages;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    Promise.all([goodDeeds, ironmanon, bb2b]).then(res => {
+      const messages = [...res[0], ...res[1], ...res[2]];
+      console.log('messages', messages);
+      const sortMessage = messages.sort((a, b) => a - b);
+      console.log('sortMessage', sortMessage);
+      this.setState({ messages });
+    });
   }
 
   handleDate(date) {
@@ -55,7 +95,9 @@ export default class MessageBoard extends Component {
   }
 
   sortMessagesByDate() {
-    return this.state.messages.sort((a, b) => a - b);
+    console.log('sortMessagesByDate', this.state.messages);
+    const sortMessage = this.state.messages.sort((a, b) => a - b);
+    console.log('sortMessage', sortMessage);
   }
 
   handleToggleModal = () => this.setState({ showModal: !this.state.showModal });
@@ -68,18 +110,6 @@ export default class MessageBoard extends Component {
     this.handleToggleModal();
     this.setState({ image });
   };
-
-  componentDidMount() {
-    window.addEventListener(
-      'resize',
-      () => this.setState({ showCarousel: window.innerWidth < 700 }),
-      false
-    );
-    this.setState({ images: [...images] });
-    this.getGoodDeedsMessages();
-    this.getMoneyRaisedMessages();
-    this.sortMessagesByDate();
-  }
 
   render() {
     return (
@@ -97,7 +127,7 @@ export default class MessageBoard extends Component {
               images={this.state.images}
               clicked={this.handleShowImage}
             />
-            <Messages messages={this.sortMessagesByDate()} />
+            <Messages messages={this.state.messages} />
           </Container>
         </Wrapper>
       </Background>
