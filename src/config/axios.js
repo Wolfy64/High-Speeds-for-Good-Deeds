@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const justgivingApi = axios.create({
+export const justgivingApi = axios.create({
   baseURL: 'https://api.justgiving.com/v1/',
   headers: {
     'x-api-key': '5b74a57d',
@@ -8,4 +8,6 @@ const justgivingApi = axios.create({
   }
 });
 
-export default justgivingApi;
+export const firebaseApi = axios.create({
+  baseURL: 'https://ironmanon-react.firebaseio.com/'
+});
