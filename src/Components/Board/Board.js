@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { justgivingApi, firebaseApi } from '../../config';
+import { justgivingApi, firebaseApi, images } from '../../config';
 import { Background, Container } from './style';
 import { Messages, Modal, Images, ImageZoomed, Wrapper } from '../index';
-// import { dbMessages, images } from '../../config';
-
-// import axios from 'axios';
 
 export default class MessageBoard extends Component {
   state = {
@@ -16,29 +13,33 @@ export default class MessageBoard extends Component {
   };
 
   componentDidMount() {
+    this.getScreenSize();
+    this.getImages();
+    this.getMessages();
+  }
+
+  getScreenSize() {
     window.addEventListener(
       'resize',
       () => this.setState({ showCarousel: window.innerWidth < 700 }),
       false
     );
-    this.getMessages();
-    console.log('end');
+  }
+
+  getImages() {
+    this.setState({ images: [...images] });
   }
 
   getMessages() {
     let goodDeeds = firebaseApi
       .get('messages.json')
-      .then(res => {
-        console.log('[goodDeeds]');
-        return Object.values(res.data);
-      })
+      .then(res => Object.values(res.data))
       .catch(err => console.log(err));
 
     // Messages from "ironmanon" on JustGiving API
     let ironmanon = justgivingApi
       .get('fundraising/pages/ironmanon/donations')
       .then(res => {
-        console.log('[ironmanon]');
         let messages = res.data.donations.map(donation => {
           const message = {
             _id: donation.id,
@@ -60,7 +61,6 @@ export default class MessageBoard extends Component {
     let bb2b = justgivingApi
       .get('fundraising/pages/bb2b/donations')
       .then(res => {
-        console.log('[bb2b]');
         let messages = res.data.donations.map(donation => {
           const message = {
             _id: donation.id,
@@ -80,9 +80,7 @@ export default class MessageBoard extends Component {
 
     Promise.all([goodDeeds, ironmanon, bb2b]).then(res => {
       const messages = [...res[0], ...res[1], ...res[2]];
-      console.log('messages', messages);
-      const sortMessage = messages.sort((a, b) => a - b);
-      console.log('sortMessage', sortMessage);
+      messages.sort((a, b) => b.date - a.date); // Sort message by date
       this.setState({ messages });
     });
   }
@@ -92,12 +90,6 @@ export default class MessageBoard extends Component {
     date = date.match(regex);
     date = parseInt(date, 10);
     return date;
-  }
-
-  sortMessagesByDate() {
-    console.log('sortMessagesByDate', this.state.messages);
-    const sortMessage = this.state.messages.sort((a, b) => a - b);
-    console.log('sortMessage', sortMessage);
   }
 
   handleToggleModal = () => this.setState({ showModal: !this.state.showModal });
