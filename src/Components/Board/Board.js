@@ -30,66 +30,44 @@ export default class MessageBoard extends Component {
     this.setState({ images: [...images] });
   }
 
+  getDonations(donations) {
+    return donations.map(donation => ({
+      _id: donation.id,
+      date: this.getDate(donation.donationDate),
+      displayName: donation.donorDisplayName,
+      text: donation.message || 'No message',
+      type: 'Money Raised',
+      moneyRaised: Math.round(donation.amount) || null
+    }));
+  }
+
+  // Get date from string to milliseconds since Jan 1, 1970 GMT
+  getDate = date => Number(date.match(/\d{13}/g));
+
   getMessages() {
-    let goodDeeds = firebaseApi
+    // Messages from "goodDeeds" on Firebase database
+    const goodDeeds = firebaseApi
       .get('messages.json')
       .then(res => Object.values(res.data))
       .catch(err => console.log(err));
 
     // Messages from "ironmanon" on JustGiving API
-    let ironmanon = justgivingApi
+    const ironmanon = justgivingApi
       .get('fundraising/pages/ironmanon/donations')
-      .then(res => {
-        let messages = res.data.donations.map(donation => {
-          const message = {
-            _id: donation.id,
-            date: this.handleDate(donation.donationDate),
-            displayName: donation.donorDisplayName,
-            text: donation.message || 'No message',
-            type: 'Money Raised',
-            moneyRaised: Math.round(donation.amount) || null
-          };
-          return message;
-        });
-        return messages;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      .then(res => this.getDonations(res.data.donations))
+      .catch(error => console.log(error));
 
     // Messages from "bb2b" on JustGiving API
-    let bb2b = justgivingApi
+    const bb2b = justgivingApi
       .get('fundraising/pages/bb2b/donations')
-      .then(res => {
-        let messages = res.data.donations.map(donation => {
-          const message = {
-            _id: donation.id,
-            date: this.handleDate(donation.donationDate),
-            displayName: donation.donorDisplayName,
-            text: donation.message || 'No message',
-            type: 'Money Raised',
-            moneyRaised: Math.round(donation.amount) || null
-          };
-          return message;
-        });
-        return messages;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      .then(res => this.getDonations(res.data.donations))
+      .catch(error => console.log(error));
 
     Promise.all([goodDeeds, ironmanon, bb2b]).then(res => {
       const messages = [...res[0], ...res[1], ...res[2]];
       messages.sort((a, b) => b.date - a.date); // Sort message by date
       this.setState({ messages });
     });
-  }
-
-  handleDate(date) {
-    const regex = /\d{13}/g;
-    date = date.match(regex);
-    date = parseInt(date, 10);
-    return date;
   }
 
   handleToggleModal = () => this.setState({ showModal: !this.state.showModal });
