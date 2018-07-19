@@ -37,12 +37,24 @@ export default class MessageBoard extends Component {
       displayName: donation.donorDisplayName,
       text: donation.message || 'No message',
       type: 'Money Raised',
+      charity: this.getCharity(donation.charityId),
       moneyRaised: Math.round(donation.amount) || null
     }));
   }
 
   // Get date from string to milliseconds since Jan 1, 1970 GMT
   getDate = date => Number(date.match(/\d{13}/g));
+
+  getCharity(charityId) {
+    switch (charityId) {
+      case 11251:
+        return 'Make-A-Wish UK';
+      case 11496:
+        return 'Age UK';
+      default:
+        break;
+    }
+  }
 
   getMessages() {
     // Messages from "goodDeeds" on Firebase database
@@ -65,7 +77,8 @@ export default class MessageBoard extends Component {
 
     Promise.all([goodDeeds, ironmanon, bb2b]).then(res => {
       const messages = [...res[0], ...res[1], ...res[2]];
-      messages.sort((a, b) => b.date - a.date); // Sort message by date
+      // Sort message by date
+      messages.sort((a, b) => b.date - a.date);
       this.setState({ messages });
     });
   }

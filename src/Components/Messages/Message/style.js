@@ -11,6 +11,12 @@ export const Counter = styled.div`
   flex: 1;
   max-width: 100px;
 `;
+export const Info = styled.p`
+  text-align: left;
+  font-size: x-small;
+  font-style: italic;
+  margin-top: 0;
+`;
 
 export const Message = styled.div`
   background-color: ${props => (props.moneyRaised ? '#9fedd7' : '#026670')};
@@ -43,7 +49,7 @@ export const Post = styled.div`
 
 export const Text = styled.p`
   text-align: start;
-  font-size: small;
+  font-size: smaller;
 `;
 
 export const Type = styled.p`
