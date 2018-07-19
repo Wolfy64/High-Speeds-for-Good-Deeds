@@ -1,5 +1,14 @@
 import styled, { css } from 'styled-components';
 
+export const H1 = styled.h1`
+  font-size: initial;
+  background-color: rgb(252, 226, 128);
+  width: fit-content;
+  margin: auto;
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
+
 export const Typography = styled.p`
   ${props =>
     props.bold &&

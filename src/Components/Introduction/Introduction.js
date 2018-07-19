@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Collapse from '@material-ui/core/Collapse';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, SwitchWrapper, Wrapper } from './style';
+import { H1, Typography, SwitchWrapper, Wrapper } from './style';
 
 const styles = theme => ({
   colorSwitchBase: {
@@ -34,15 +34,7 @@ class Introduction extends Component {
     return (
       <Wrapper>
         <Collapse in={this.state.isOpen} collapsedHeight="300px">
-          <h4
-            style={{
-              backgroundColor: '#fce280',
-              width: 'fit-content',
-              margin: 'auto'
-            }}
-          >
-            Maybe a title here ? Like "My story ?"
-          </h4>
+          <H1>A not-so-short introduction</H1>
           <Typography>
             As some of you may
             <Tooltip
