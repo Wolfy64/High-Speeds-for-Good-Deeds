@@ -100,7 +100,6 @@ export default class MessageBoard extends Component {
         <Modal show={this.state.showModal} onClick={this.handleToggleModal}>
           <ImageZoomed>
             <img src={this.state.image.src} alt={this.state.image.title} />
-            <p>{this.state.image.title}</p>
           </ImageZoomed>
         </Modal>
         <Wrapper>
