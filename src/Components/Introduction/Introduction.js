@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import Collapse from '@material-ui/core/Collapse';
 import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import { H1, Hr, Typography, SwitchWrapper, Wrapper } from './style';
 
@@ -245,15 +246,21 @@ class Introduction extends Component {
         </Collapse>
         <SwitchWrapper isOpen={this.state.isOpen}>
           {this.state.isOpen ? 'Close it' : 'Read more'}
-          <Switch
-            checked={this.state.isOpen}
-            onChange={this.handleChange}
-            onClick={this.handleChange}
-            classes={{
-              switchBase: classes.colorSwitchBase,
-              checked: classes.colorChecked,
-              bar: classes.colorBar
-            }}
+          <FormControlLabel
+            label=""
+            control={
+              <Switch
+                label=""
+                checked={this.state.isOpen}
+                onChange={this.handleChange}
+                onClick={this.handleChange}
+                classes={{
+                  switchBase: classes.colorSwitchBase,
+                  checked: classes.colorChecked,
+                  bar: classes.colorBar
+                }}
+              />
+            }
           />
         </SwitchWrapper>
       </Wrapper>
