@@ -1,6 +1,6 @@
 # High speeds for gooddeeds
 
-This charity website is made with [React][1] and lot of 🖤💛❤️ and ☕️ ! Feel free to fork it or contribute.
+This charity website is made with [React][1] and lot of 🧡 and ☕️ ! Feel free to fork it or contribute.
 
 ## Getting Started
 
