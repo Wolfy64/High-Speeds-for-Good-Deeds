@@ -49,7 +49,7 @@ export const Post = styled.div`
 
 export const Text = styled.p`
   text-align: start;
-  font-size: smaller;
+  /* font-size: smaller; */
 `;
 
 export const Type = styled.p`
