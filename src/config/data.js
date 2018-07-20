@@ -210,10 +210,11 @@ export const images = [
       'https://firebasestorage.googleapis.com/v0/b/ironmanon-react.appspot.com/o/images%2Fironmanon21.jpg?alt=media&token=7d61f2da-b3b7-4b8c-bd52-ebb006a9a9c6',
     title: 'Image',
     author: 'Manon Van Thorenburg'
-  }
+  },
   {
     id: 22,
-    thumbnail:'https://firebasestorage.googleapis.com/v0/b/ironmanon-react.appspot.com/o/thumbnail%2Fironmanon22.jpg?alt=media&token=7b299686-5cda-4439-bc61-857f5fb244c0',
+    thumbnail:
+      'https://firebasestorage.googleapis.com/v0/b/ironmanon-react.appspot.com/o/thumbnail%2Fironmanon22.jpg?alt=media&token=7b299686-5cda-4439-bc61-857f5fb244c0',
     src:
       'https://firebasestorage.googleapis.com/v0/b/ironmanon-react.appspot.com/o/images%2Fironmanon22.jpg?alt=media&token=9acc56da-10d4-47bf-b080-cf8a019c1de4',
     title: 'Image',
