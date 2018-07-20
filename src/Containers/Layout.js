@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Wrapper } from './style';
 import { Route, Switch } from 'react-router-dom';
 import { GoodDeed, GoodDeeds, Home, MoneyRaised } from './index';
