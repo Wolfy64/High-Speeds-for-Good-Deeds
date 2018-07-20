@@ -11,6 +11,8 @@ export default props => {
       text={message.text}
       goodDeeds={message.goodDeeds}
       moneyRaised={message.moneyRaised}
+      date={message.date}
+      charity={message.charity}
     />
   ));
   return <Messages>{messages}</Messages>;

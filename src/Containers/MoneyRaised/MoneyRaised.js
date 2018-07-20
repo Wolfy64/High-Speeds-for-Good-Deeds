@@ -3,9 +3,9 @@ import { MyButton, Wrapper } from './style';
 
 export default () => {
   const makeAwish =
-    'http://link.justgiving.com/v1/fundraisingpage/donate/pageId/10362912?amount=10.00&currency=GBP&reference=irm2018&exitUrl=https%3A%2F%2Fpeaceful-hoover-fa7146.netlify.com%3FjgDonationId%3DJUSTGIVING-DONATION-ID';
+    'http://link.justgiving.com/v1/fundraisingpage/donate/pageId/10362912?amount=10.00&currency=GBP&reference=irm2018&exitUrl=https://www.highspeedsforgooddeeds.com%3FjgDonationId%3DJUSTGIVING-DONATION-ID';
   const ageUK =
-    'http://link.justgiving.com/v1/fundraisingpage/donate/pageId/11137173?amount=10.00&currency=GBP&reference=irm&exitUrl=https%3A%2F%2Fpeaceful-hoover-fa7146.netlify.com%3FjgDonationId%3DJUSTGIVING-DONATION-ID';
+    'http://link.justgiving.com/v1/fundraisingpage/donate/pageId/11137173?amount=10.00&currency=GBP&reference=irm&exitUrl=https://www.highspeedsforgooddeeds.com%3FjgDonationId%3DJUSTGIVING-DONATION-ID';
 
   return (
     <Wrapper>

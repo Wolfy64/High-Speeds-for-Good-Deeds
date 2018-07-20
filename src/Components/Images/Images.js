@@ -5,7 +5,11 @@ import { Image, Images } from './style';
 export default props => {
   const image = props.images.map(image => (
     <Image key={image.id} className="swiper-slide">
-      <img src={image.src} alt={image.title} onClick={props.clicked} />
+      <img
+        src={image.thumbnail}
+        alt={image.title}
+        onClick={() => props.clicked(image.id)}
+      />
     </Image>
   ));
 
@@ -19,11 +23,8 @@ export default props => {
 
   new Swiper('.swiper-container', {
     direction: 'horizontal',
-    slidesPerView: 3,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 3000
-    },
+    slidesPerView: 'auto',
+    allowTouchMove: false,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
