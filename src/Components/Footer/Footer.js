@@ -11,7 +11,7 @@ export default () => (
         <img src={email} alt="email" />
       </a>
       <a
-        href="https://www.instagram.com/manonvant/"
+        href="https://www.instagram.com/against.thetide/"
         target="_blank"
         rel="noopener noreferrer"
       >
