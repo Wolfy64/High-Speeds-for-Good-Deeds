@@ -8,6 +8,7 @@ export const Images = styled.div`
   justify-content: center;
   height: max-content;
   flex: 1;
+  align-self: self-start;
 
   img {
     width: 100%;
