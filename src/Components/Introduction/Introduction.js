@@ -45,7 +45,7 @@ class Introduction extends Component {
             >
               <span> know*</span>
             </Tooltip>
-            , Tim and I am doing an Ironman on July 29th.<br />
+            , Tim and I are doing an Ironman on July 29th.<br />
             I am also running the entire coast of Belgium in August in an event
             I have made up and dubbed the Belgium Border to Border run{' '}
             <em>(BB2B – take note, it’s going to become a thing).</em>
