@@ -85,11 +85,8 @@ export default class MessageBoard extends Component {
 
   handleToggleModal = () => this.setState({ showModal: !this.state.showModal });
 
-  handleShowImage = event => {
-    const image = {
-      src: event.target.src,
-      title: event.target.alt
-    };
+  handleShowImage = idImage => {
+    const image = this.state.images.find(image => image.id === idImage);
     this.handleToggleModal();
     this.setState({ image });
   };
