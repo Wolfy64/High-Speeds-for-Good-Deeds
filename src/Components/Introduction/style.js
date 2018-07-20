@@ -9,22 +9,33 @@ export const H1 = styled.h1`
   border-radius: 5px;
 `;
 
+export const Hr = styled.hr`
+  width: 50%;
+  border: 1px solid #fce280;
+`;
+
 export const Typography = styled.p`
   ${props =>
     props.bold &&
     css`
       font-weight: bold;
+      color: #77777c;
     `};
   ${props =>
     props.smaller &&
     css`
       font-size: smaller;
+      margin: 0;
     `};
   ${props =>
     props.italic &&
     css`
       font-style: italic;
     `};
+
+  b {
+    color: #77777c;
+  }
 `;
 
 export const SwitchWrapper = styled.div`
