@@ -19,10 +19,7 @@ export default () => (
       </a>
       <Terms>
         Made by
-        <a href="mailto:contact@dewulfdavid.com?Subject=High%20speed%20for%20good%20deeds%20Website">
-          {' '}
-          David De Wulf{' '}
-        </a>
+        <a href="https://dewulfdavid.com"> David De Wulf </a>
         -{' '}
         <a
           href="https://www.freeprivacypolicy.com/privacy/view/43a9b7024084e36dd20c29faa33d2879"
