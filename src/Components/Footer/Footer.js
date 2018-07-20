@@ -13,7 +13,7 @@ export default () => (
       <a
         href="https://www.instagram.com/manonvant/"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         <img src={instagram} alt="instagram" />
       </a>
@@ -27,7 +27,7 @@ export default () => (
         <a
           href="https://www.freeprivacypolicy.com/privacy/view/43a9b7024084e36dd20c29faa33d2879"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           Privacy Policy
         </a>
