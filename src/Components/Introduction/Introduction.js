@@ -179,7 +179,7 @@ class Introduction extends Component {
             lives.<br />
           </Typography>
           <Typography>
-            Age UK focusses on improving the life of the elderly by helping them
+            Age UK focuses on improving the life of the elderly by helping them
             be more independent, organising events for them, and generally
             looking after those who are finding later life difficult.<br />{' '}
             Their work is heartwarming.
