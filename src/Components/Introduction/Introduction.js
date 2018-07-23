@@ -23,8 +23,8 @@ const styles = () => ({
   colorChecked: {}
 });
 
-const IRONMAN_DATE = '07 29 2018';
-const BB2B_DATE = '08 25 2018';
+const IRONMAN_DATE = '07/29/2018';
+const BB2B_DATE = '08/25/2018';
 
 class Introduction extends Component {
   state = {
