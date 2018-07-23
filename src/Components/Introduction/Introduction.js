@@ -6,7 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import { H1, Hr, Typography, SwitchWrapper, Wrapper } from './style';
 
-const styles = theme => ({
+const styles = () => ({
   colorSwitchBase: {
     color: '#026670',
     '& + $colorBar': {
@@ -23,15 +23,29 @@ const styles = theme => ({
   colorChecked: {}
 });
 
+const IRONMAN_DATE = '07 29 2018';
+const BB2B_DATE = '08 25 2018';
+
 class Introduction extends Component {
   state = {
     isOpen: false
   };
 
+  countdown(date) {
+    const finalDate = new Date(date);
+    const now = new Date();
+    const daysRemaining = Math.ceil((finalDate - now) / (24 * 60 * 60 * 1000));
+
+    if (daysRemaining <= 0) return 0;
+    return daysRemaining;
+  }
+
   handleChange = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
     const { classes } = this.props;
+    const ironmanCount = this.countdown(IRONMAN_DATE);
+    const bb2b = this.countdown(BB2B_DATE);
     return (
       <Wrapper>
         <Collapse in={this.state.isOpen} collapsedHeight="300px">
@@ -212,10 +226,10 @@ class Introduction extends Component {
             This page will keep a tally of all good deeds & of all donations.
           </Typography>
           <Typography>
-            There are 16 days between now and the Ironman{' '}
-            <em>(oh wow that’s not a lot)</em> and 43 days until the Belgian
-            Ultra, so if you wanted to, you could do 43 good deeds and make me
-            feel uber popular by posting them all on here.<br />
+            There are {ironmanCount} days between now and the Ironman{' '}
+            <em>(oh wow that’s not a lot)</em> and {bb2b} days until the Belgian
+            Ultra, so if you wanted to, you could do {bb2b} good deeds and make
+            me feel uber popular by posting them all on here.<br />
             Also imagine how much greater so many strangers' lives will be.
           </Typography>
           <Typography>
