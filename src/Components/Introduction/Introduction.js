@@ -245,7 +245,9 @@ class Introduction extends Component {
           </Typography>
         </Collapse>
         <SwitchWrapper isOpen={this.state.isOpen}>
-          {this.state.isOpen ? 'Close it' : 'Read more'}
+          <span style={{ marginRight: 5 }}>
+            {this.state.isOpen ? 'Close it' : 'Read more'}
+          </span>
           <FormControlLabel
             label=""
             control={
