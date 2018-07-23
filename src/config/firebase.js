@@ -1,9 +1,8 @@
 // Firebase App is always required and must be first
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 // Add additional services that you want to use
 import 'firebase/database/dist/index.cjs';
-import 'firebase/auth/dist/index.cjs';
 
 // Initialize Firebase
 const config = {
