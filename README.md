@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/71157548677c48dea60a6a731edcb888)](https://www.codacy.com/app/Wolfy64/ironmanon?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Wolfy64/ironmanon&amp;utm_campaign=Badge_Grade)
 # High speeds for gooddeeds
 
 This charity website is made with [React][1] and lot of 🧡 and ☕️ ! Feel free to fork it or contribute.
