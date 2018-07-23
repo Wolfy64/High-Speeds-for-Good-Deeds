@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button';
 export const Background = styled.div`
   background-color: #fef9c7;
   border-radius: 5px;
+  @media (max-width: 700px) {
+    border-radius: 0px;
+  }
 `;
 
 export const MyButton = styled(Button)`
