@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { justgivingApi, firebaseApi, images } from '../../config';
-import { Background, Container } from './style';
+import {
+  Background,
+  MyButton,
+  Container,
+  ContainerBtn,
+  ContainerMsg
+} from './style';
+import next from './../../assets/next.svg';
+import previous from './../../assets/previous.svg';
 import { Messages, Modal, Images, ImageZoomed, Wrapper } from '../index';
 
 export default class MessageBoard extends Component {
@@ -9,13 +17,23 @@ export default class MessageBoard extends Component {
     images: [],
     showCarousel: false,
     showModal: false,
-    image: {}
+    image: {},
+    currentMessages: [],
+    currentPage: 1,
+    maxPage: 0,
+    messagesPerPage: 10
   };
 
   componentDidMount() {
     this.getScreenSize();
     this.getImages();
     this.getMessages();
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.currentPage !== this.state.currentPage) {
+      this.doPagination();
+    }
   }
 
   getScreenSize() {
@@ -80,6 +98,7 @@ export default class MessageBoard extends Component {
       // Sort message by date
       messages.sort((a, b) => b.date - a.date);
       this.setState({ messages });
+      this.doPagination();
     });
   }
 
@@ -90,6 +109,31 @@ export default class MessageBoard extends Component {
     this.handleToggleModal();
     this.setState({ image });
   };
+
+  handleNextPage = () => {
+    if (this.state.currentPage < this.state.maxPage) {
+      this.setState(prevState => ({
+        currentPage: prevState.currentPage + 1
+      }));
+    }
+  };
+
+  handlePreviousPage = () => {
+    if (this.state.currentPage > 1) {
+      this.setState(prevState => ({
+        currentPage: prevState.currentPage - 1
+      }));
+    }
+  };
+
+  doPagination() {
+    const { messages, currentPage, messagesPerPage } = this.state;
+    const indexLastMessage = currentPage * messagesPerPage;
+    const indexFirstMessage = indexLastMessage - messagesPerPage;
+    const currentMessages = messages.slice(indexFirstMessage, indexLastMessage);
+    const maxPage = Math.ceil(messages.length / messagesPerPage);
+    this.setState({ currentMessages, maxPage });
+  }
 
   render() {
     return (
@@ -106,7 +150,27 @@ export default class MessageBoard extends Component {
               images={this.state.images}
               clicked={this.handleShowImage}
             />
-            <Messages messages={this.state.messages} />
+            <ContainerMsg>
+              <Messages messages={this.state.currentMessages} />
+              <ContainerBtn>
+                <MyButton
+                  variant="contained"
+                  color="secondary"
+                  onClick={this.handlePreviousPage}
+                  disabled={this.state.currentPage === 1}
+                >
+                  <img src={previous} alt="previous" />
+                </MyButton>
+                <MyButton
+                  variant="contained"
+                  color="secondary"
+                  onClick={this.handleNextPage}
+                  disabled={this.state.currentPage === this.state.maxPage}
+                >
+                  <img src={next} alt="next" />
+                </MyButton>
+              </ContainerBtn>
+            </ContainerMsg>
           </Container>
         </Wrapper>
       </Background>
