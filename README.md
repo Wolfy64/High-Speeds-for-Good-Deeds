@@ -1,5 +1,7 @@
 # High speeds for gooddeeds
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4f1344de58c4430fb59a1bccce53c4a3)](https://app.codacy.com/app/Wolfy64/ironmanon?utm_source=github.com&utm_medium=referral&utm_content=Wolfy64/ironmanon&utm_campaign=badger)
+
 This charity website is made with [React][1] and lot of 🧡 and ☕️ ! Feel free to fork it or contribute.
 
 ## Getting Started
