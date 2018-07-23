@@ -9,6 +9,7 @@ import {
 } from './style';
 import next from './../../assets/next.svg';
 import previous from './../../assets/previous.svg';
+import loadingPrimary from './../../assets/loadingPrimary.svg';
 import { Messages, Modal, Images, ImageZoomed, Wrapper } from '../index';
 
 export default class MessageBoard extends Component {
@@ -151,25 +152,31 @@ export default class MessageBoard extends Component {
               clicked={this.handleShowImage}
             />
             <ContainerMsg>
-              <Messages messages={this.state.currentMessages} />
-              <ContainerBtn>
-                <MyButton
-                  variant="contained"
-                  color="secondary"
-                  onClick={this.handlePreviousPage}
-                  disabled={this.state.currentPage === 1}
-                >
-                  <img src={previous} alt="previous" />
-                </MyButton>
-                <MyButton
-                  variant="contained"
-                  color="secondary"
-                  onClick={this.handleNextPage}
-                  disabled={this.state.currentPage === this.state.maxPage}
-                >
-                  <img src={next} alt="next" />
-                </MyButton>
-              </ContainerBtn>
+              {this.state.currentMessages.length === 0 ? (
+                <img src={loadingPrimary} alt="loading" />
+              ) : (
+                <React.Fragment>
+                  <Messages messages={this.state.currentMessages} />
+                  <ContainerBtn>
+                    <MyButton
+                      variant="contained"
+                      color="secondary"
+                      onClick={this.handlePreviousPage}
+                      disabled={this.state.currentPage === 1}
+                    >
+                      <img src={previous} alt="previous" />
+                    </MyButton>
+                    <MyButton
+                      variant="contained"
+                      color="secondary"
+                      onClick={this.handleNextPage}
+                      disabled={this.state.currentPage === this.state.maxPage}
+                    >
+                      <img src={next} alt="next" />
+                    </MyButton>
+                  </ContainerBtn>
+                </React.Fragment>
+              )}
             </ContainerMsg>
           </Container>
         </Wrapper>
