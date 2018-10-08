@@ -16,7 +16,7 @@ export default props => {
       </Counter>
       <Counter moneyRaised>
         <Typography>Money Raised</Typography>
-        <Amount>{moneyRaised === 0 ? loadP : moneyRaised}</Amount>
+        <Amount>{moneyRaised === 0 ? loadP : `£ ${moneyRaised}`}</Amount>
       </Counter>
     </Container>
   );
